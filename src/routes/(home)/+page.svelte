@@ -13,21 +13,11 @@ import { base } from "$app/paths";
   </header>
 
   <nav class="block">
-    <a href="{base}/rules">
-      Rules
-    </a>
-
-    <a href="{base}/run">
-      Run a Game
-    </a>
-
-    <a href="{base}/play">
-      Play a Game
-    </a>
-
-    <a href="{base}/credits">
-      Credits
-    </a>
+    <a href="{base}/rules"> Rules </a>
+    <a href="{base}/run"> Run a Game </a>
+    <a href="{base}/play"> Play a Game </a>
+    <a href="{base}/changelog"> Changelog </a>
+    <a href="{base}/credits"> Credits </a>
   </nav>
 
 </main>
@@ -43,7 +33,7 @@ main {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: oklch(0.84 0.0395 60.88);
+  background: oklch(0.92 0.0271 60.88);
 }
 
 .block {

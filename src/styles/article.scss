@@ -1,0 +1,60 @@
+@use '#styles/mixins/colours' as *;
+@use '#styles/mixins/fonts' as *;
+
+
+article {
+  padding: 2rem 5rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  background: oklch(0.92 0.0271 60.88);
+
+  main {
+    max-width: 50rem;
+  }
+
+  p {
+    margin: 0.5em 0;
+    font-size: 1.25rem;
+
+    &.date {
+      float: right;
+      transform: translateY(-4em);
+    }
+  }
+
+  h2 {
+    width: 40%;
+    padding: 3rem 0 0.5rem;
+    margin-bottom: 2rem;
+    @include font-head;
+    font-size: 2rem;
+    border-bottom: 1.5px solid rgb(black, 20%);
+  }
+
+  h3 {
+    padding: 1.5rem 0 1rem;
+    @include font-body;
+    font-size: 1.5rem;
+  }
+
+  header {
+    padding-top: 2rem;
+    text-align: center;
+  
+    h1 {
+      padding: 0 0 0.25em;
+      @include font-head;
+      font-size: 3rem;
+    }
+  }
+
+  ul {
+    li {
+      padding-left: 0.5em;
+      margin: 0.5em 0 0.5em 1em;
+      font-size: 1.25rem;
+    }
+  }
+
+}

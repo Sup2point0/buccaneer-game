@@ -1,0 +1,15 @@
+## v2.1
+<p class="date"> 3 April 2024 </p>
+
+- Removed **Matrix Confusion** to avoid confusion.
+  - 1 cell now remains empty after filling in the grid.
+
+## v2.0
+<p class="date"> October 2024 </p>
+
+- Removed **Division by 0** and **Rotation by *i*** to simplify the game (they were quite complicated to manage and just added too much confusion).
+
+## v1.0
+<p class="date"> July 2022 </p>
+
+- Initial release!

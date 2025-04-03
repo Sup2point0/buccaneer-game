@@ -1,6 +1,7 @@
 <script>
 
 import "#styles/essence.scss";
+import "#styles/article.scss";
 
 let { children } = $props();
 
