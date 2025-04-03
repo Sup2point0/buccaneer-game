@@ -1,3 +1,6 @@
+@use '#styles/mixins/fonts' as *;
+
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -6,5 +9,6 @@
 
 :root {
   color-scheme: light dark;
+  @include font-body;
   font-size: 100%;
 }
