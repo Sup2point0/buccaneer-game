@@ -29,36 +29,36 @@ function calculate_cords(layer: number, group: number, index: number): Cord
 
   switch (group) {
     case 0:
-      l += layer;
       r += layer;
       l -= index;
       break;
 
     case 1:
       r += layer;
-      l -= index;
+      l -= layer;
       r -= index;
       break;
 
     case 2:
       l -= layer;
+      l += index;
       r -= index;
       break;
 
     case 3:
-      l -= layer;
       r -= layer;
       l += index;
       break;
 
     case 4:
+      l += layer;
       r -= layer;
-      l += index;
       r += index;
       break;
 
     case 5:
       l += layer;
+      l -= index;
       r += index;
       break;
 
@@ -100,11 +100,11 @@ function calculate_cords(layer: number, group: number, index: number): Cord
 
 .hex-cell {
   --dist: calc(var(--size) * var(--layer));
-  --t: calc(360deg * var(--group) / 6);
+  --t: calc(30deg + 360deg * var(--group) / 6);
   --tt: calc(var(--t) + 120deg);
 
-  height: var(--size);
-  aspect-ratio: cos(30deg);
+  width: var(--size);
+  aspect-ratio: 1/cos(30deg);
   position: absolute;
   transform:
     translateX(calc(
@@ -120,7 +120,7 @@ function calculate_cords(layer: number, group: number, index: number): Cord
 }
 
 .hex-cell.back {
-  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
+  clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
   background: none;
 }
 
@@ -128,14 +128,14 @@ function calculate_cords(layer: number, group: number, index: number): Cord
   $width: 2.5px;
 
   clip-path: 
-    polygon(50% 0,-50% 50%,50% 100%,150% 50%,50% 0,
-    50% $width,
-    calc(100% - $width*sin(60deg)) calc(25% + $width*cos(60deg)),
-    calc(100% - $width*sin(60deg)) calc(75% - $width*cos(60deg)),
-    50% calc(100% - $width),
-    calc($width*sin(60deg)) calc(75% - $width*cos(60deg)),
-    calc($width*sin(60deg)) calc(25% + $width*cos(60deg)),
-    50% $width);
+    polygon(0 50%,50% -50%,100% 50%,50% 150%,0 50%,
+    $width 50%,
+    calc(25% + $width*cos(60deg)) calc(100% - $width*sin(60deg)),
+    calc(75% - $width*cos(60deg)) calc(100% - $width*sin(60deg)),
+    calc(100% - $width) 50%,
+    calc(75% - $width*cos(60deg)) calc($width*sin(60deg)),
+    calc(25% + $width*cos(60deg)) calc($width*sin(60deg)),
+    $width 50%);
     background: black;
 }
 
