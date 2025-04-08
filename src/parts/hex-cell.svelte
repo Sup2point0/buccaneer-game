@@ -5,8 +5,12 @@ A cell in a `HexGrid`.
 
 <script lang="ts">
 
+import katex from "katex";
+
 import { game } from "#scripts/stores";
 import { HexCell } from "#scripts/types";
+
+import { onMount } from "svelte";
 
 interface Props {
   layer?: number;
@@ -19,6 +23,21 @@ let { layer = 0, group = 0, index = 0 }: Props = $props();
 const cell: HexCell | null = $game.grid.get_cell(
   calculate_cords(layer, group, index)
 );
+
+
+let left: HTMLElement;
+let right: HTMLElement;
+
+onMount(() => {
+  katex.render(cell?.l, left, {
+    throwOnError: false,
+    displayMode: false,
+  });
+  katex.render(cell?.r, right, {
+    throwOnError: false,
+    displayMode: false,
+  });
+});
 
 
 /** Calculates the L/R cords of the cell, given its (layer, group, index). */
@@ -71,27 +90,41 @@ function calculate_cords(layer: number, group: number, index: number): string
 </script>
 
 
-<!-- svelte-ignore a11y_consider_explicit_label -->
-<button class="hex-cell back"
-  class:used={cell?.used}
-  class:live={$game.selected_cell === cell?.cords}
-  style="--layer: {layer}; --group: {group}; --index: {index}"
-  onclick={() => {
-    try {
-      if (!cell) throw new Error();
-      $game.select_cell(cell.cords);
-      cell.used = true;   
-    } catch {
-      window.alert("Cell is undefined!");
-    }
-  }}
-></button>
-
-<div class="hex-cell front"
-  class:used={cell?.used}
-  class:live={$game.selected_cell === cell?.cords}
-  style="--layer: {layer}; --group: {group}; --index: {index}"
+<div class="hex-cell-root"
+  style="
+    --layer: {layer};
+    --group: {group};
+    --index: {index};"
 >
+  <!-- svelte-ignore a11y_consider_explicit_label -->
+  <button class="hex-cell back"
+    class:used={cell?.used}
+    class:live={$game.selected_cell === cell?.cords}
+    style="
+      --l-cord: {cell?.l};
+      --r-cord: {cell?.r};"
+    onclick={() => {
+      try {
+        if (!cell) throw new Error();
+        $game.select_cell(cell.cords);
+        cell.used = true;   
+      } catch {
+        window.alert("Cell is undefined!");
+      }
+    }}
+  ></button>
+
+  <div class="hex-cell front"
+    class:used={cell?.used}
+    class:live={$game.selected_cell === cell?.cords}
+  >
+  </div>
+
+  <div class="hex-cell cords">
+    <span bind:this={left}>hello</span>
+    <span>/</span>
+    <span bind:this={right}>hello</span>
+  </div>
 </div>
 
 
@@ -156,6 +189,41 @@ function calculate_cords(layer: number, group: number, index: number): string
 
   &.live {
     background: #f5d503;
+  }
+}
+
+.hex-cell.cords {
+  opacity: 0;
+  visibility: hidden;
+
+  width: 4em;
+  height: max-content;
+  aspect-ratio: auto;
+  padding: 0.2em 0.5em;
+  top: 4em;
+  left: 0;
+  z-index: 3;
+
+  color: white;
+  text-align: center;
+  background: rgb(black, 90%);
+  border-radius: 0.4em;
+  box-shadow: 0 2px 8px rgb(black, 40%);
+  transition: opacity 0.12s ease-out;
+  transition-delay: 0;
+
+  .hex-cell:hover ~ & {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.5s;
+  }
+
+  .separator {
+    color: $col-text-prot;
+  }
+
+  :global(.katex-html) {
+    display: none;
   }
 }
 

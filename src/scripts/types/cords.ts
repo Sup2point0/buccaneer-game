@@ -1,12 +1,12 @@
 /** A co-ordinate in the hexagonal grid, defined by a left and right co-ordinate. */
 export enum LCord {
   e = "e",
-  phi = "phi",
-  root2 = "sqrt(2)",
+  phi = "\\phi",
+  root2 = "\\sqrt{2}",
   two = "2.0",
   one = "1",
-  root3 = "sqrt(3)",
-  pi = "pi",
+  root3 = "\\sqrt{3}",
+  pi = "\\pi",
 }
 
 export enum RCord {
