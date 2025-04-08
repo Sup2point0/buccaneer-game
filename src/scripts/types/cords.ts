@@ -1,6 +1,4 @@
 /** A co-ordinate in the hexagonal grid, defined by a left and right co-ordinate. */
-export type Cord = [LCord, RCord];
-
 export enum LCord {
   e = "e",
   phi = "phi",

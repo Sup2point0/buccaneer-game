@@ -1,5 +1,5 @@
-import { HexCell } from "./hex-cell";
-import { LCord, RCord, type Cord } from "./cords";
+import { HexCell } from "./hex-cell.svelte.ts";
+import { LCord, RCord } from "./cords";
 
 
 export class HexGrid
@@ -26,9 +26,10 @@ export class HexGrid
   {
     let out = new Map();
 
+    // FIXME surplus cells generated with this approach
     for (let l of this.l_cords) {
       for (let r of this.r_cords) {
-        out.set(l+r, new HexCell(l, r));
+        out.set(`${l}-${r}`, new HexCell(l, r));
       }
     }
 
@@ -36,8 +37,8 @@ export class HexGrid
   }
 
   /** Try to locate the cell at a given cord, if it is defined. */
-  get_cell(cord: Cord): HexCell | null
+  get_cell(cords: string): HexCell | null
   {
-    return this.cells.get(cord[0] + cord[1]) ?? null;
+    return this.cells.get(cords) ?? null;
   }
 }

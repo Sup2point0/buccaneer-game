@@ -6,7 +6,7 @@ A cell in a `HexGrid`.
 <script lang="ts">
 
 import { game } from "#scripts/stores";
-import type { Cord } from "#scripts/types";
+import { HexCell } from "#scripts/types";
 
 interface Props {
   layer?: number;
@@ -16,13 +16,13 @@ interface Props {
 
 let { layer = 0, group = 0, index = 0 }: Props = $props();
 
-const cell = $game.grid.get_cell(
+const cell: HexCell | null = $game.grid.get_cell(
   calculate_cords(layer, group, index)
 );
 
 
 /** Calculates the L/R cords of the cell, given its (layer, group, index). */
-function calculate_cords(layer: number, group: number, index: number): Cord
+function calculate_cords(layer: number, group: number, index: number): string
 {
   let l = Math.floor($game.grid.l_cords.length / 2);
   let r = Math.floor($game.grid.r_cords.length / 2);
@@ -61,38 +61,37 @@ function calculate_cords(layer: number, group: number, index: number): Cord
       l -= index;
       r += index;
       break;
-
   }
 
-  return [
-    $game.grid.l_cords[l],
-    $game.grid.r_cords[r],
-  ];
+  let L = $game.grid.l_cords[l];
+  let R = $game.grid.r_cords[r];
+  return `${L}-${R}`;
 }
-
 
 </script>
 
 
-
-<div class="hex-cell back"
+<!-- svelte-ignore a11y_consider_explicit_label -->
+<button class="hex-cell back"
+  class:used={cell?.used}
+  class:live={$game.selected_cell === cell?.cords}
   style="--layer: {layer}; --group: {group}; --index: {index}"
-  onclick={cell.select()}
-></div>
+  onclick={() => {
+    try {
+      if (!cell) throw new Error();
+      $game.select_cell(cell.cords);
+      cell.used = true;   
+    } catch {
+      window.alert("Cell is undefined!");
+    }
+  }}
+></button>
 
 <div class="hex-cell front"
+  class:used={cell?.used}
+  class:live={$game.selected_cell === cell?.cords}
   style="--layer: {layer}; --group: {group}; --index: {index}"
 >
-</div>
-
-<div class="hex-cell"
-  style="--layer: {layer}; --group: {group}; --index: {index}"
-  style:left="1.5em"
-  style:top="2.5em"
-  style:font-size="75%"
->
-  {cell?.l}-{cell?.r}
-  <!-- {layer}-{group}-{index} -->
 </div>
 
 
@@ -116,12 +115,24 @@ function calculate_cords(layer: number, group: number, index: number): Cord
       var(--dist) * sin(var(--tt)) * var(--index) * 1 / var(--layer)
     ));
 
-  transition: background 0.06s ease-out;
+  transition: background 0.08s ease-out;
 }
 
 .hex-cell.back {
   clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
   background: none;
+
+  &:hover { background: rgb(black, 3%); }
+  &:active { background: rgb(black, 10%); }
+
+  &.used {
+    background: rgb(black, 4%);
+  }
+
+  &.live {
+    background: rgb(#f5d503, 25%);
+    &:hover { background: rgb(#f5d503, 50%); }
+  }
 }
 
 .hex-cell.front {
@@ -136,19 +147,20 @@ function calculate_cords(layer: number, group: number, index: number): Cord
     calc(75% - $width*cos(60deg)) calc($width*sin(60deg)),
     calc(25% + $width*cos(60deg)) calc($width*sin(60deg)),
     $width 50%);
-    background: black;
-}
+  
+  background: #383b3d;
 
-.hex-cell:hover {
-  &.back {
-    background: rgb(black, 3%);
+  &.used {
+    background: #cfd3d5;
+  }
+
+  &.live {
+    background: #f5d503;
   }
 }
 
-.hex-cell:active {
-  &.back {
-    background: rgb(black, 5%);
-  }
+button {
+  appearance: none;
 }
 
 </style>

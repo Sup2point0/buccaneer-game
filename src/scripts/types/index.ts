@@ -1,6 +1,5 @@
 export { LCord, RCord } from './cords';
-export type { Cord } from './cords';
 
 export { HexGrid } from './hex-grid';
-export { HexCell, HexCellState } from './hex-cell';
+export { HexCell } from './hex-cell.svelte.ts';
 export { Item, ItemType } from './item';
