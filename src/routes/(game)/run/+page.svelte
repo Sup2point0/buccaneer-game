@@ -1,5 +1,7 @@
 <script>
 
+import { game } from "#scripts/stores";
+
 import HexGrid from "#parts/hex-grid.svelte";
 
 </script>
@@ -7,7 +9,18 @@ import HexGrid from "#parts/hex-grid.svelte";
 
 <div class="layout">
   <div id="hex-grid">
-    <HexGrid />
+    <HexGrid rings={3} size="5rem" />
+  </div>
+
+  <div id="game-ui">
+    <section id="current-cell">
+      <h2> Current Cell </h2>
+      <p> {$game.current_cell} </p>
+    </section>
+
+    <section id="History">
+      
+    </section>
   </div>
 </div>
 
@@ -16,16 +29,18 @@ import HexGrid from "#parts/hex-grid.svelte";
 
 .layout {
   display: flex;
+  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  column-gap: 2rem;
+
+  height: 90vh;
   width: 100vw;
 }
 
 #hex-grid {
   height: 80vh;
   width: 80vh;
-  background: lightgrey;
 }
 
 </style>

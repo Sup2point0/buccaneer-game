@@ -5,34 +5,95 @@ A cell in a `HexGrid`.
 
 <script lang="ts">
 
-import { HexCellState } from "#scripts/types";
+import { game } from "#scripts/stores";
+import type { Cord } from "#scripts/types";
 
 interface Props {
-  layer: number;
-  group: number;
-  idx: number;
+  layer?: number;
+  group?: number;
+  index?: number;
 }
 
-let { layer, group, idx }: Props = $props();
+let { layer = 0, group = 0, index = 0 }: Props = $props();
+
+const cell = $game.grid.get_cell(
+  calculate_cords(layer, group, index)
+);
 
 
-let state: HexCellState = $state(HexCellState.Idle);
+/** Calculates the L/R cords of the cell, given its (layer, group, index). */
+function calculate_cords(layer: number, group: number, index: number): Cord
+{
+  let l = Math.floor($game.grid.l_cords.length / 2);
+  let r = Math.floor($game.grid.r_cords.length / 2);
+
+  switch (group) {
+    case 0:
+      l += layer;
+      r += layer;
+      l -= index;
+      break;
+
+    case 1:
+      r += layer;
+      l -= index;
+      r -= index;
+      break;
+
+    case 2:
+      l -= layer;
+      r -= index;
+      break;
+
+    case 3:
+      l -= layer;
+      r -= layer;
+      l += index;
+      break;
+
+    case 4:
+      r -= layer;
+      l += index;
+      r += index;
+      break;
+
+    case 5:
+      l += layer;
+      r += index;
+      break;
+
+  }
+
+  return [
+    $game.grid.l_cords[l],
+    $game.grid.r_cords[r],
+  ];
+}
+
 
 </script>
 
 
 
 <div class="hex-cell back"
-  style:--layer={layer}
-  style:--group={group}
-  style:--idx={idx}
+  style="--layer: {layer}; --group: {group}; --index: {index}"
+  onclick={cell.select()}
 ></div>
 
 <div class="hex-cell front"
-  style:--layer={layer}
-  style:--group={group}
-  style:--idx={idx}
-></div>
+  style="--layer: {layer}; --group: {group}; --index: {index}"
+>
+</div>
+
+<div class="hex-cell"
+  style="--layer: {layer}; --group: {group}; --index: {index}"
+  style:left="1.5em"
+  style:top="2.5em"
+  style:font-size="75%"
+>
+  {cell?.l}-{cell?.r}
+  <!-- {layer}-{group}-{index} -->
+</div>
 
 
 <style lang="scss">
@@ -48,11 +109,11 @@ let state: HexCellState = $state(HexCellState.Idle);
   transform:
     translateX(calc(
       var(--dist) * cos(var(--t)) +
-      var(--dist) * cos(var(--tt)) * var(--idx) * 1 / var(--layer)
+      var(--dist) * cos(var(--tt)) * var(--index) * 1 / var(--layer)
     ))
     translateY(calc(
       var(--dist) * sin(var(--t)) +
-      var(--dist) * sin(var(--tt)) * var(--idx) * 1 / var(--layer)
+      var(--dist) * sin(var(--tt)) * var(--index) * 1 / var(--layer)
     ));
 
   transition: background 0.06s ease-out;
