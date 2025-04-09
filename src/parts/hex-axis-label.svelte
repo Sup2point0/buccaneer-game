@@ -29,18 +29,18 @@ let hover_data: any = getContext("hex-grid.hover-data");
 
 function bump_hover()
 {
-  if (hover_data.axis.timeout) {
-    clearTimeout(hover_data.axis.timeout);
+  if (hover_data.timeout) {
+    clearTimeout(hover_data.timeout);
   }
-  
-  if (hover_data.axis.hovering) {
+
+  if (hover_data.hovering) {
     hover_data.axis.cord = cord;
     hover_data.axis.side = side;
     return;
   }
 
   timeout = setTimeout(() => {
-    hover_data.axis.hovering = true;
+    hover_data.hovering = true;
     hover_data.axis.cord = cord;
     hover_data.axis.side = side;
   }, 500);
@@ -51,14 +51,15 @@ function bump_unhover()
   if (timeout) {
     clearTimeout(timeout);
   }
-  if (hover_data.axis.timeout) {
-    clearTimeout(hover_data.axis.timeout);
+  if (hover_data.timeout) {
+    clearTimeout(hover_data.timeout);
   }
+  
+  hover_data.timeout = null;
+  hover_data.axis.cord = null;
 
-  hover_data.axis.timeout = setTimeout(() => {
-    hover_data.axis.hovering = false;
-    hover_data.axis.timeout = null;
-    hover_data.axis.cord = null;
+  hover_data.timeout = setTimeout(() => {
+    hover_data.hovering = false;
   }, 600);
 }
 

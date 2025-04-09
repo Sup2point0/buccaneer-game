@@ -78,12 +78,12 @@ function calculate_cords(layer: number, group: number, index: number): Cords
 
 function bump_hover()
 {
-  if (hover_data.cell.timeout) {
-    clearTimeout(hover_data.cell.timeout);
+  if (hover_data.timeout) {
+    clearTimeout(hover_data.timeout);
   }
 
   timeout = setTimeout(() => {
-    hover_data.cell.hovering = true;
+    hover_data.hovering = true;
   }, 500);
 }
 
@@ -92,13 +92,13 @@ function bump_unhover()
   if (timeout) {
     clearTimeout(timeout);
   }
-  if (hover_data.cell.timeout) {
-    clearTimeout(hover_data.cell.timeout);
+  if (hover_data.timeout) {
+    clearTimeout(hover_data.timeout);
   }
 
-  hover_data.cell.timeout = setTimeout(() => {
-    hover_data.cell.hovering = false;
-    hover_data.cell.timeout = null;
+  hover_data.timeout = setTimeout(() => {
+    hover_data.hovering = false;
+    hover_data.timeout = null;
   }, 600);
 }
 
@@ -143,7 +143,7 @@ function bump_unhover()
   >
   </div>
 
-  <div class="hex-cell cords" class:hovering={hover_data.cell.hovering}>
+  <div class="hex-cell cords" class:hovering={hover_data.hovering}>
     {@html katex.renderToString(cell?.l ?? "?")}
     <span class="separator">/</span>
     {@html katex.renderToString(cell?.r ?? "?")}
