@@ -34,7 +34,7 @@ let cell_timeout: number | null = null;
 
 
 /** Calculates the L/R cords of the cell, given its (layer, group, index). */
-function calculate_cords(layer: number, group: number, index: number): string
+function calculate_cords(layer: number, group: number, index: number): Cords
 {
   let l = Math.floor($game.grid.l_cords.length / 2);
   let r = Math.floor($game.grid.r_cords.length / 2);
@@ -77,7 +77,7 @@ function calculate_cords(layer: number, group: number, index: number): string
 
   let L = $game.grid.l_cords[l];
   let R = $game.grid.r_cords[r];
-  return `${L}-${R}`;
+  return [L, R];
 }
 
 function bump_hover()
@@ -122,9 +122,8 @@ function bump_unhover()
       try {
         if (!cell) throw new Error();
         $game.select_cell(cell.cords);
-        cell.used = true;   
       } catch {
-        window.alert("Cell is undefined!");
+        alert("Cell is undefined!");
       }
     }}
   ></button>

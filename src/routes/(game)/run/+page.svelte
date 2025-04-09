@@ -12,8 +12,6 @@ import { expoOut } from "svelte/easing";
 import { onMount } from "svelte";
 
 
-
-
 onMount(() => {
   setInterval(() => {
     if (!$game.start_time) return;
@@ -42,6 +40,16 @@ onMount(() => {
         <h2> TIME </h2>
         <p> {$game.time_display} </p>
       </section>
+
+      <section id="cell-count">
+        <h2> CELLS </h2>
+
+        <p>
+          {$game.grid.used}
+          <span class="separator">/</span>
+          {$game.grid.cells.size}
+        </p>
+      </section>
     </div>
   </div>
 
@@ -51,7 +59,7 @@ onMount(() => {
         <h2> CURRENT CELL </h2>
 
         <div class="content">
-          {#key $game.selected_l + $game.selected_r}
+          {#key `${$game.selected_l}-${$game.selected_r}`}
             <p transition:slide={{ duration: 1000, easing: expoOut }}>
 
               {#if $game.selected_l && $game.selected_r}
@@ -59,7 +67,7 @@ onMount(() => {
                 <span class="separator">/</span>
                 {@html katex.renderToString($game.selected_r, { throwOnError: false })}
               {:else}
-                -
+                none
               {/if}
 
             </p>
@@ -71,13 +79,28 @@ onMount(() => {
         <h2> HISTORY </h2>
 
         <div class="content">
-          {#each $game.cell_history as [l, r] (l+r)}
-            <p transition:slide={{ duration: 1000, easing: expoOut }}>
-              {@html katex.renderToString(l, { throwOnError: false })}
-              <span class="separator">/</span>
-              {@html katex.renderToString(r, { throwOnError: false })}
-            </p>
-          {/each}
+          {#if $game.cell_history?.length}
+            {#each $game.cell_history as [l, r], i (l+r)}
+              <button onclick={() => {
+                try {
+                  $game.grid.reset_cell([l, r]);
+                  $game.cell_history.splice(i, 1);
+                } catch {
+                  alert("Something went wrong!");
+                }
+              }}
+                transition:slide={{ duration: 1000, easing: expoOut }}
+              >
+                {@html katex.renderToString(l, { throwOnError: false })}
+                <span class="separator">/</span>
+                {@html katex.renderToString(r, { throwOnError: false })}
+
+                <span class="cross">×</span>
+              </button>
+            {/each}
+          {:else}
+            <p> None to show yet! </p>
+          {/if}
         </div>
       </section>
     </div>
@@ -85,17 +108,17 @@ onMount(() => {
     <div class="col right">
       <section id="pick-next">
         <h2> PICKING NEXT CELL </h2>
-        <Notes text="Player names" />
+        <Notes text="Old Pirate Jim" />
       </section>
 
       <section id="complex-plane">
         <h2> COMPLEX PLANE </h2>
-        <Notes text="Player in the complex plane" multi={false} />
+        <Notes text="Rick Astley" multi={false} />
       </section>
 
       <section id="notes">
         <h2> NOTES </h2>
-        <Notes text="Notes" />
+        <Notes text="Nice for fishing, ain’t it" />
       </section>
     </div>
   </div>
@@ -105,14 +128,13 @@ onMount(() => {
 <style lang="scss">
 
 .layout {
-  padding: 0 2rem;
+  width: 100vw;
+  padding: 1rem 2rem;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   column-gap: 2rem;
-
-  width: 100vw;
 
   & > .left {
     flex-grow: 1;
@@ -143,7 +165,7 @@ onMount(() => {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  gap: 3rem;
+  gap: 5rem;
 
   section {
     p {
@@ -152,6 +174,7 @@ onMount(() => {
     }
   }
 }
+
 
 .col {
   flex-grow: 1;
@@ -178,24 +201,55 @@ onMount(() => {
 }
 
 #cell-history {
-  height: 25em;
-  overflow-y: auto;
+  overflow-y: hidden;
+  
+  .content {
+    height: 25em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1em;
+  }
 
-  p {
-    padding: 0.5em 0.5em;
-    margin: 0.25em -0.5em;
+  button {
+    appearance: none;
+    width: 100%;
+    padding: 0.4em 0.5em;
+    position: relative;
+    display: block;
+
+    font-size: 120%;
+    text-align: left;
+    background: none;
     border-radius: 0.4em;
+    border: none;
+    outline: none;
     transition: background 0.1s ease-out;
 
     &:hover {
       background: $col-back;
     }
+    &:active {
+      background: $col-back-click;
+    }
+
+    .cross {
+      display: none;
+    }
+
+    &:hover .cross {
+      display: block;
+      position: absolute;
+      top: 0.5em;
+      right: 0.5em;
+    }
   }
 }
+
 
 h2 {
   @include font-body;
   font-size: 120%;
+  color: $col-text-prot;
 }
 
 

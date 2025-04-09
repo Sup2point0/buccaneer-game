@@ -1,5 +1,5 @@
 import { HexCell } from "./hex-cell.svelte.ts";
-import { LCord, RCord } from "./cords";
+import { LCord, RCord, type Cords } from "./cords";
 
 
 export class HexGrid
@@ -12,6 +12,7 @@ export class HexGrid
   r_cords: RCord[];
 
   cells: Map<string, HexCell>;
+  used: number = $state(0);
 
   constructor(rings?: number)
   {
@@ -37,8 +38,30 @@ export class HexGrid
   }
 
   /** Try to locate the cell at a given cord, if it is defined. */
-  get_cell(cords: string): HexCell | null
+  get_cell(cords: Cords): HexCell | null
   {
-    return this.cells.get(cords) ?? null;
+    return this.cells.get(`${cords[0]}-${cords[1]}`) ?? null;
+  }
+
+  /** Mark a cell as used. */
+  use_cell(cords: Cords): boolean
+  {
+    let cell = this.get_cell(cords);
+    if (!cell) return false;
+
+    cell.used = true;
+    this.used++;
+    return true;
+  }
+
+  /** Reset a cell to unused. */
+  reset_cell(cords: Cords): boolean
+  {
+    let cell = this.get_cell(cords);
+    if (!cell) return false;
+
+    cell.used = false;
+    this.used--;
+    return true;
   }
 }

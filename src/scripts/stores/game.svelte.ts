@@ -9,13 +9,13 @@ export class Game
   /* @ts-ignore */
   grid: HexGrid;
 
-  turn: number = 0;
+  turn: number = $state(0);
   start_time: number | null = 1744194999511;  // FIXME
   time: number = 0;
 
-  selected_l: LCord | null = null;
-  selected_r: RCord | null = null;
-  cell_history: Cords[] = [];
+  selected_l: LCord | null = $state(null);
+  selected_r: RCord | null = $state(null);
+  cell_history: Cords[] = $state([]);
 
   constructor(options: GameOptions)
   {
@@ -38,6 +38,8 @@ export class Game
 
   select_cell(cords: Cords)
   {
+    this.grid.use_cell(cords);
+
     let [l, r] = cords;
     this.selected_l = l;
     this.selected_r = r;

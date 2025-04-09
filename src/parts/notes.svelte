@@ -44,18 +44,17 @@ textarea {
   outline: none;
   transition: background 0.1s ease-out;
 
-  &::placeholder {
-    color: rgb(black, 25%);
-  }
-
-  &:hover {
-    background: $col-back-hover;
-  }
+  &:hover { background: $col-back-hover; }
+  &:active { background: $col-back-click; }
 
   &.multi {
     min-height: 8em;
     overflow-x: hidden;
     overflow-y: auto;
+  }
+
+  &::placeholder {
+    color: rgb(black, 25%);
   }
 }
 
