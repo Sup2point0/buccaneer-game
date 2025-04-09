@@ -33,7 +33,7 @@ function bump_hover()
     clearTimeout(hover_data.timeout);
   }
 
-  if (hover_data.hovering) {
+  if (hover_data.hovering || hover_data.hoverlock) {
     hover_data.axis.cord = cord;
     hover_data.axis.side = side;
     return;
@@ -58,9 +58,11 @@ function bump_unhover()
   hover_data.timeout = null;
   hover_data.axis.cord = null;
 
-  hover_data.timeout = setTimeout(() => {
-    hover_data.hovering = false;
-  }, 600);
+  if (!hover_data.hoverlock) {
+    hover_data.timeout = setTimeout(() => {
+      hover_data.hovering = false;
+    }, 600);
+  }
 }
 
 </script>
@@ -70,8 +72,6 @@ function bump_unhover()
   style:--layer={layer}
   style:--group={Math.floor(index / layer) + group}
   style:--index={index % layer}
-  style:--dx={side === "left" ? "-0.7rem" : "0.7rem"}
-  style:--dy="0.6rem"
   onmouseover={bump_hover}
   onfocus={bump_hover}
   onmouseleave={bump_unhover}
@@ -88,20 +88,21 @@ function bump_unhover()
   --t: calc(30deg + 360deg * var(--group) / 6);
   --tt: calc(var(--t) + 120deg);
 
-  width: var(--size);
+  width: calc(var(--size) * 1);
+  padding: 0.8em 0.5em 0;
   aspect-ratio: 1/cos(30deg);
 
+  /* hexagonal shape for consistency in expected area of interaction */
+  clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
   position: absolute;
   transform:
     translateX(calc(
       var(--dist) * cos(var(--t)) +
-      var(--dist) * cos(var(--tt)) * var(--index) / var(--layer) +
-      var(--dx)
+      var(--dist) * cos(var(--tt)) * var(--index) / var(--layer)
     ))
     translateY(calc(
       var(--dist) * sin(var(--t)) +
-      var(--dist) * sin(var(--tt)) * var(--index) / var(--layer) +
-      var(--dy)
+      var(--dist) * sin(var(--tt)) * var(--index) / var(--layer)
     ));
   
   transition: font-size 0.12s ease-out;

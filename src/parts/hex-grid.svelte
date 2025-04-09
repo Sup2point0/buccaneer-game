@@ -22,6 +22,7 @@ let { rings, size = "5rem" }: Props = $props();
 
 
 let hover_data = $state({
+  hoverlock: false,
   hovering: false,
   timeout: null,
   axis: {
@@ -32,7 +33,16 @@ let hover_data = $state({
 
 setContext("hex-grid.hover-data", hover_data);
 
-$inspect(hover_data.hovering);
+window.addEventListener("keydown", e => {
+  if (e.ctrlKey) {
+    hover_data.hoverlock = true;
+  }
+})
+window.addEventListener("keyup", e => {
+  if (e.key === "Control") {
+    hover_data.hoverlock = false;
+  }
+})
 
 </script>
 

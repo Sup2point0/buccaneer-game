@@ -82,6 +82,11 @@ function bump_hover()
     clearTimeout(hover_data.timeout);
   }
 
+  if (hover_data.hoverlock) {
+    hover_data.hovering = true;
+    return;
+  }
+
   timeout = setTimeout(() => {
     hover_data.hovering = true;
   }, 500);
@@ -96,10 +101,12 @@ function bump_unhover()
     clearTimeout(hover_data.timeout);
   }
 
-  hover_data.timeout = setTimeout(() => {
-    hover_data.hovering = false;
-    hover_data.timeout = null;
-  }, 600);
+  if (!hover_data.hoverlock) {
+    hover_data.timeout = setTimeout(() => {
+      hover_data.hovering = false;
+      hover_data.timeout = null;
+    }, 600);
+  }
 }
 
 </script>
