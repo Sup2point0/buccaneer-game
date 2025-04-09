@@ -112,14 +112,12 @@ function bump_unhover()
   <!-- svelte-ignore a11y_consider_explicit_label -->
   <button class="hex-cell back"
     class:used={cell?.used}
-    class:live={$game.selected_cell === cell?.cords}
+    class:live={$game.selected_l === cell?.l && $game.selected_r === cell?.r}
     style="
       --l-cord: {cell?.l};
       --r-cord: {cell?.r};"
-    onmouseover={bump_hover}
-    onfocus={bump_hover}
-    onmouseleave={bump_unhover}
-    onfocusout={bump_unhover}
+    onmouseover={bump_hover} onfocus={bump_hover}
+    onmouseleave={bump_unhover} onfocusout={bump_unhover}
     onclick={() => {
       try {
         if (!cell) throw new Error();
@@ -133,14 +131,14 @@ function bump_unhover()
 
   <div class="hex-cell front"
     class:used={cell?.used}
-    class:live={$game.selected_cell === cell?.cords}
+    class:live={$game.selected_l === cell?.l && $game.selected_r === cell?.r}
   >
   </div>
 
   <div class="hex-cell cords" class:hovering>
-    <span>{@html katex.renderToString(cell?.l ?? "?")}</span>
+    {@html katex.renderToString(cell?.l ?? "?")}
     <span class="separator">/</span>
-    <span>{@html katex.renderToString(cell?.r ?? "?")}</span>
+    {@html katex.renderToString(cell?.r ?? "?")}
   </div>
 </div>
 

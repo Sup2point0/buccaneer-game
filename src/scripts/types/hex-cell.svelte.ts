@@ -1,5 +1,5 @@
-import { LCord, RCord } from "./cords";
-import { Item } from "./item";
+import type { LCord, RCord, Cords } from "./cords";
+import type { Item } from "./item";
 
 
 export class HexCell
@@ -16,7 +16,7 @@ export class HexCell
     this.r = r;
   }
 
-  get cords(): string {
-    return `${this.l}-${this.r}`;
+  get cords(): Cords {
+    return [this.l, this.r];
   }
 }
