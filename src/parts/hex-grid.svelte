@@ -27,6 +27,8 @@ let hover_data = $state({
     timeout: null,
   },
   axis: {
+    hovering: false,
+    timeout: null,
     cord: null,
     side: "right",
   },

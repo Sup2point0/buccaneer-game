@@ -25,6 +25,7 @@ const cell: HexCell | null = $game.grid.get_cell(
 );
 let timeout: number | null = null;
 
+
 let hover_data: any = getContext("hex-grid.hover-data");
 
 

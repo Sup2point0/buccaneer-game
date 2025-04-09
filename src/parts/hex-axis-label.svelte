@@ -21,18 +21,45 @@ interface Props {
 
 let { side, cord, layer, group, index }: Props = $props();
 
-let hover_data = getContext("hex-grid.hover-data");
+let timeout: number | null = null;
 
 
-function onhover()
+let hover_data: any = getContext("hex-grid.hover-data");
+
+
+function bump_hover()
 {
-  hover_data.axis.cord = cord;
-  hover_data.axis.side = side;
+  if (hover_data.axis.timeout) {
+    clearTimeout(hover_data.axis.timeout);
+  }
+  
+  if (hover_data.axis.hovering) {
+    hover_data.axis.cord = cord;
+    hover_data.axis.side = side;
+    return;
+  }
+
+  timeout = setTimeout(() => {
+    hover_data.axis.hovering = true;
+    hover_data.axis.cord = cord;
+    hover_data.axis.side = side;
+  }, 500);
 }
 
-function onescape()
+function bump_unhover()
 {
-  hover_data.axis.cord = null;
+  if (timeout) {
+    clearTimeout(timeout);
+  }
+  if (hover_data.axis.timeout) {
+    clearTimeout(hover_data.axis.timeout);
+  }
+
+  hover_data.axis.timeout = setTimeout(() => {
+    hover_data.axis.hovering = false;
+    hover_data.axis.timeout = null;
+    hover_data.axis.cord = null;
+  }, 600);
 }
 
 </script>
@@ -44,10 +71,10 @@ function onescape()
   style:--index={index % layer}
   style:--dx={side === "left" ? "-0.7rem" : "0.7rem"}
   style:--dy="0.6rem"
-  onmouseover={onhover}
-  onfocus={onhover}
-  onmouseleave={onescape}
-  onfocusout={onescape}
+  onmouseover={bump_hover}
+  onfocus={bump_hover}
+  onmouseleave={bump_unhover}
+  onfocusout={bump_unhover}
 >
   {@html katex.renderToString(cord ?? "?", { throwOnError: false })}
 </button>
