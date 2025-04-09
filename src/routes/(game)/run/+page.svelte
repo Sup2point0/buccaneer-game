@@ -25,7 +25,7 @@ onMount(() => {
 <div class="layout">
   <div class="left">
     <div id="hex-grid">
-      <HexGrid rings={3} size="4.5rem" />
+      <HexGrid rings={$game.grid.rings} size="4.5rem" />
     </div>
 
     <div id="game-info">

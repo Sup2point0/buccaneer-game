@@ -9,6 +9,8 @@ export enum LCord {
   one = "1",
   root3 = "\\sqrt{3}",
   pi = "\\pi",
+  root5 = "\\sqrt{5}",
+  tau = "\\tau",
 }
 
 export enum RCord {
@@ -19,4 +21,6 @@ export enum RCord {
   x = "x",
   y = "y",
   z = "z",
+  j = "j",
+  k = "k",
 }

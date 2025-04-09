@@ -15,7 +15,9 @@ let global_timeout: number | null = null;
 import katex from "katex";
 
 import { game } from "#scripts/stores";
-import { HexCell } from "#scripts/types";
+import { HexCell, type Cords } from "#scripts/types";
+
+import { getContext } from "svelte";
 
 interface Props {
   layer?: number;
@@ -28,9 +30,9 @@ let { layer = 0, group = 0, index = 0 }: Props = $props();
 const cell: HexCell | null = $game.grid.get_cell(
   calculate_cords(layer, group, index)
 );
-
-
 let cell_timeout: number | null = null;
+
+let hovered_axis = getContext("hex-grid.hoverered-axis");
 
 
 /** Calculates the L/R cords of the cell, given its (layer, group, index). */
@@ -104,6 +106,9 @@ function bump_unhover()
 
 
 <div class="hex-cell-root"
+  class:highlight-left={hovered_axis.side === "left" && (hovered_axis.cord === cell?.l || hovered_axis.cord === cell?.r)}
+  class:highlight-right={hovered_axis.side === "right" && (hovered_axis.cord === cell?.l || hovered_axis.cord === cell?.r)}
+
   style="
     --layer: {layer};
     --group: {group};
@@ -113,9 +118,7 @@ function bump_unhover()
   <button class="hex-cell back"
     class:used={cell?.used}
     class:live={$game.selected_l === cell?.l && $game.selected_r === cell?.r}
-    style="
-      --l-cord: {cell?.l};
-      --r-cord: {cell?.r};"
+    
     onmouseover={bump_hover} onfocus={bump_hover}
     onmouseleave={bump_unhover} onfocusout={bump_unhover}
     onclick={() => {
@@ -158,11 +161,11 @@ function bump_unhover()
   transform:
     translateX(calc(
       var(--dist) * cos(var(--t)) +
-      var(--dist) * cos(var(--tt)) * var(--index) * 1 / var(--layer)
+      var(--dist) * cos(var(--tt)) * var(--index) / var(--layer)
     ))
     translateY(calc(
       var(--dist) * sin(var(--t)) +
-      var(--dist) * sin(var(--tt)) * var(--index) * 1 / var(--layer)
+      var(--dist) * sin(var(--tt)) * var(--index) / var(--layer)
     ));
 
   transition: background 0.1s ease-out;
@@ -194,6 +197,13 @@ function bump_unhover()
       background: rgb(#f5d503, 50%);
     }
   }
+
+  .highlight-left & {
+    background: color-mix(in oklch, $col-blue, transparent 80%);
+  }
+  .highlight-right & {
+    background: color-mix(in oklch, $col-red, transparent 80%);
+  }
 }
 
 .hex-cell.front {
@@ -217,6 +227,13 @@ function bump_unhover()
 
   &.live {
     background: #f5d503;
+  }
+
+  .highlight-left & {
+    background: $col-blue;
+  }
+  .highlight-right & {
+    background: $col-red;
   }
 }
 
