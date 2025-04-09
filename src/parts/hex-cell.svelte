@@ -145,6 +145,9 @@ function bump_unhover()
 
 <style lang="scss">
 
+@use 'sass:color';
+
+
 .hex-cell {
   --dist: calc(var(--size) * var(--layer));
   --t: calc(30deg + 360deg * var(--group) / 6);
@@ -163,27 +166,34 @@ function bump_unhover()
       var(--dist) * sin(var(--tt)) * var(--index) * 1 / var(--layer)
     ));
 
-  transition: background 0.08s ease-out;
+  transition: background 0.1s ease-out;
 }
 
 .hex-cell.back {
   clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
-  background: none;
+  background: rgb(black, 4%);
 
   &:hover, &:focus {
-    background: rgb(black, 3%);
+    background: rgb(black, 8%);
   }
   &:active {
-    background: rgb(black, 10%);
+    background: rgb(black, 12%);
     }
 
   &.used {
-    background: rgb(black, 4%);
+    background: #65696b;
+
+    &:hover, &:focus {
+      background: color.adjust(#65696b, $lightness: -10%);
+    }
   }
 
   &.live {
     background: rgb(#f5d503, 25%);
-    &:hover { background: rgb(#f5d503, 50%); }
+
+    &:hover, &:focus {
+      background: rgb(#f5d503, 50%);
+    }
   }
 }
 
@@ -199,11 +209,11 @@ function bump_unhover()
     calc(75% - $width*cos(60deg)) calc($width*sin(60deg)),
     calc(25% + $width*cos(60deg)) calc($width*sin(60deg)),
     $width 50%);
-  
-  background: #383b3d;
+    
+  background: #cfd3d5;
 
   &.used {
-    background: #cfd3d5;
+    background: #383b3d;
   }
 
   &.live {

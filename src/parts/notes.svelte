@@ -30,17 +30,27 @@ let { text = "", multi = true }: Props = $props();
 textarea {
   resize: none;
   width: 100%;
-  height: 3.5em;
+  height: 4em;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding: 1em 1.5em;
-  background: $col-back;
 
   @include font-body;
   font-size: 125%;
+  line-height: 175%;
+  white-space: nowrap;
+  background: $col-back;
   border: none;
   outline: none;
 
+  &::placeholder {
+    color: rgb(black, 25%);
+  }
+
   &.multi {
     min-height: 8em;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 

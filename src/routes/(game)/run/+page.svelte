@@ -168,7 +168,19 @@ onMount(() => {
 }
 
 #cell-history {
-  min-height: 10rem;
+  height: 25em;
+  overflow-y: auto;
+
+  p {
+    padding: 0.5em 0.5em;
+    margin: 0.5em -0.5em;
+    border-radius: 0.4em;
+    transition: background 0.1s ease-out;
+
+    &:hover {
+      background: $col-back;
+    }
+  }
 }
 
 h2 {

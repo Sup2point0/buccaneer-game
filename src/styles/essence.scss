@@ -1,3 +1,6 @@
+@use 'sass:color';
+
+@use '#styles/mixins/colours' as *;
 @use '#styles/mixins/fonts' as *;
 
 
@@ -10,4 +13,12 @@
 :root {
   @include font-body;
   font-size: 1rem;
+}
+
+body, html {
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color.adjust($col-prot, $alpha: -0.2) !important;
 }
