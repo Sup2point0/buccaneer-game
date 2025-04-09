@@ -3,14 +3,19 @@
 A cell in a `HexGrid`.
 -->
 
+<script module>
+
+let hovering: boolean = $state(false);
+let global_timeout: number | null = null;
+
+</script>
+
 <script lang="ts">
 
 import katex from "katex";
 
 import { game } from "#scripts/stores";
 import { HexCell } from "#scripts/types";
-
-import { onMount } from "svelte";
 
 interface Props {
   layer?: number;
@@ -25,19 +30,7 @@ const cell: HexCell | null = $game.grid.get_cell(
 );
 
 
-let left: HTMLElement;
-let right: HTMLElement;
-
-onMount(() => {
-  katex.render(cell?.l, left, {
-    throwOnError: false,
-    displayMode: false,
-  });
-  katex.render(cell?.r, right, {
-    throwOnError: false,
-    displayMode: false,
-  });
-});
+let cell_timeout: number | null = null;
 
 
 /** Calculates the L/R cords of the cell, given its (layer, group, index). */
@@ -87,6 +80,26 @@ function calculate_cords(layer: number, group: number, index: number): string
   return `${L}-${R}`;
 }
 
+function bump_hover()
+{
+  if (global_timeout) clearTimeout(global_timeout);
+
+  cell_timeout = setTimeout(() => {
+    hovering = true;
+  }, 500);
+}
+
+function bump_unhover()
+{
+  if (global_timeout) clearTimeout(global_timeout);
+  if (cell_timeout) clearTimeout(cell_timeout);
+
+  global_timeout = setTimeout(() => {
+    hovering = false;
+    global_timeout = null;
+  }, 600);
+}
+
 </script>
 
 
@@ -103,6 +116,10 @@ function calculate_cords(layer: number, group: number, index: number): string
     style="
       --l-cord: {cell?.l};
       --r-cord: {cell?.r};"
+    onmouseover={bump_hover}
+    onfocus={bump_hover}
+    onmouseleave={bump_unhover}
+    onfocusout={bump_unhover}
     onclick={() => {
       try {
         if (!cell) throw new Error();
@@ -120,10 +137,10 @@ function calculate_cords(layer: number, group: number, index: number): string
   >
   </div>
 
-  <div class="hex-cell cords">
-    <span bind:this={left}>hello</span>
-    <span>/</span>
-    <span bind:this={right}>hello</span>
+  <div class="hex-cell cords" class:hovering>
+    <span>{@html katex.renderToString(cell?.l ?? "?")}</span>
+    <span class="separator">/</span>
+    <span>{@html katex.renderToString(cell?.r ?? "?")}</span>
   </div>
 </div>
 
@@ -155,8 +172,12 @@ function calculate_cords(layer: number, group: number, index: number): string
   clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
   background: none;
 
-  &:hover { background: rgb(black, 3%); }
-  &:active { background: rgb(black, 10%); }
+  &:hover, &:focus {
+    background: rgb(black, 3%);
+  }
+  &:active {
+    background: rgb(black, 10%);
+    }
 
   &.used {
     background: rgb(black, 4%);
@@ -196,12 +217,12 @@ function calculate_cords(layer: number, group: number, index: number): string
   opacity: 0;
   visibility: hidden;
 
-  width: 4em;
+  width: max-content;
   height: max-content;
   aspect-ratio: auto;
-  padding: 0.2em 0.5em;
-  top: 4em;
-  left: 0;
+  padding: 0.25em 0.5em;
+  top: 4.5rem;
+  left: 1rem;
   z-index: 3;
 
   color: white;
@@ -209,21 +230,21 @@ function calculate_cords(layer: number, group: number, index: number): string
   background: rgb(black, 90%);
   border-radius: 0.4em;
   box-shadow: 0 2px 8px rgb(black, 40%);
-  transition: opacity 0.12s ease-out;
+  transition: all 0.12s ease-out;
   transition-delay: 0;
 
-  .hex-cell:hover ~ & {
+  .hex-cell:where(:hover, :focus) ~ & {
     opacity: 1;
     visibility: visible;
     transition-delay: 0.5s;
   }
+  .hex-cell:where(:hover, :focus) ~ &.hovering {
+    transition-duration: 0.06s;
+    transition-delay: 0s;
+  }
 
   .separator {
     color: $col-text-prot;
-  }
-
-  :global(.katex-html) {
-    display: none;
   }
 }
 
