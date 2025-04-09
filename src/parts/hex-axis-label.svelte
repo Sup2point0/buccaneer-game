@@ -9,7 +9,7 @@ import katex from "katex";
 
 import type { LCord, RCord } from "#scripts/types";
 
-import { getContext, setContext } from "svelte";
+import { getContext } from "svelte";
 
 interface Props {
   side: "left" | "right";
@@ -21,24 +21,24 @@ interface Props {
 
 let { side, cord, layer, group, index }: Props = $props();
 
-let hovered_axis = getContext("hex-grid.hoverered-axis");
+let hover_data = getContext("hex-grid.hover-data");
 
 
 function onhover()
 {
-  hovered_axis.cord = cord;
-  hovered_axis.side = side;
+  hover_data.axis.cord = cord;
+  hover_data.axis.side = side;
 }
 
 function onescape()
 {
-  hovered_axis.cord = null;
+  hover_data.axis.cord = null;
 }
 
 </script>
 
 
-<button class="hex-label {side}"
+<button class="axis-label {side}"
   style:--layer={layer}
   style:--group={Math.floor(index / layer) + group}
   style:--index={index % layer}
@@ -55,7 +55,7 @@ function onescape()
 
 <style lang="scss">
 
-.hex-label {
+.axis-label {
   --dist: calc(var(--size) * var(--layer));
   --t: calc(30deg + 360deg * var(--group) / 6);
   --tt: calc(var(--t) + 120deg);

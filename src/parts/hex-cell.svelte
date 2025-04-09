@@ -32,7 +32,7 @@ const cell: HexCell | null = $game.grid.get_cell(
 );
 let cell_timeout: number | null = null;
 
-let hovered_axis = getContext("hex-grid.hoverered-axis");
+let hover_data = getContext("hex-grid.hover-data");
 
 
 /** Calculates the L/R cords of the cell, given its (layer, group, index). */
@@ -106,8 +106,14 @@ function bump_unhover()
 
 
 <div class="hex-cell-root"
-  class:highlight-left={hovered_axis.side === "left" && (hovered_axis.cord === cell?.l || hovered_axis.cord === cell?.r)}
-  class:highlight-right={hovered_axis.side === "right" && (hovered_axis.cord === cell?.l || hovered_axis.cord === cell?.r)}
+  class:highlight-left={
+    hover_data.axis.side === "left"
+    && (hover_data.axis.cord === cell?.l || hover_data.axis.cord === cell?.r)
+  }
+  class:highlight-right={
+    hover_data.axis.side === "right"
+    && (hover_data.axis.cord === cell?.l || hover_data.axis.cord === cell?.r)
+  }
 
   style="
     --layer: {layer};

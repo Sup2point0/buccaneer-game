@@ -48,6 +48,7 @@ onMount(() => {
           {$game.grid.used}
           <span class="separator">/</span>
           {$game.grid.cells.size}
+          <!-- FIXME count cells properly -->
         </p>
       </section>
     </div>

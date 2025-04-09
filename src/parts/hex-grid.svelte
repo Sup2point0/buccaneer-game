@@ -9,7 +9,7 @@ import { game } from "#scripts/stores";
 import type { LCord, RCord } from "#scripts/types";
 
 import HexCell from "#parts/hex-cell.svelte";
-import HexLabel from "#parts/hex-label.svelte";
+import HexLabel from "#parts/hex-axis-label.svelte";
 
 import { setContext } from "svelte";
 
@@ -21,15 +21,18 @@ interface Props {
 let { rings, size = "5rem" }: Props = $props();
 
 
-let hovered_axis: {
-  cord: LCord | RCord | null;
-  side: "left" | "right";
-} = $state({
-  cord: null,
-  side: "right",
+let hover_data = $state({
+  cell: {
+    hovering: true,
+    timeout: null,
+  },
+  axis: {
+    cord: null,
+    side: "right",
+  },
 });
 
-setContext("hex-grid.hoverered-axis", hovered_axis)
+setContext("hex-grid.hover-data", hover_data)
 
 </script>
 
