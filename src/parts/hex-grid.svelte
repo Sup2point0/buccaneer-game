@@ -23,7 +23,7 @@ let { rings, size = "5rem" }: Props = $props();
 
 let hover_data = $state({
   cell: {
-    hovering: true,
+    hovering: false,
     timeout: null,
   },
   axis: {
@@ -32,7 +32,7 @@ let hover_data = $state({
   },
 });
 
-setContext("hex-grid.hover-data", hover_data)
+setContext("hex-grid.hover-data", hover_data);
 
 </script>
 

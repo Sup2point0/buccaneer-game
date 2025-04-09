@@ -3,13 +3,6 @@
 A cell in a `HexGrid`.
 -->
 
-<script module>
-
-let hovering: boolean = $state(false);
-let global_timeout: number | null = null;
-
-</script>
-
 <script lang="ts">
 
 import katex from "katex";
@@ -30,9 +23,9 @@ let { layer = 0, group = 0, index = 0 }: Props = $props();
 const cell: HexCell | null = $game.grid.get_cell(
   calculate_cords(layer, group, index)
 );
-let cell_timeout: number | null = null;
+let timeout: number | null = null;
 
-let hover_data = getContext("hex-grid.hover-data");
+let hover_data: any = getContext("hex-grid.hover-data");
 
 
 /** Calculates the L/R cords of the cell, given its (layer, group, index). */
@@ -84,21 +77,27 @@ function calculate_cords(layer: number, group: number, index: number): Cords
 
 function bump_hover()
 {
-  if (global_timeout) clearTimeout(global_timeout);
+  if (hover_data.cell.timeout) {
+    clearTimeout(hover_data.cell.timeout);
+  }
 
-  cell_timeout = setTimeout(() => {
-    hovering = true;
+  timeout = setTimeout(() => {
+    hover_data.cell.hovering = true;
   }, 500);
 }
 
 function bump_unhover()
 {
-  if (global_timeout) clearTimeout(global_timeout);
-  if (cell_timeout) clearTimeout(cell_timeout);
+  if (timeout) {
+    clearTimeout(timeout);
+  }
+  if (hover_data.cell.timeout) {
+    clearTimeout(hover_data.cell.timeout);
+  }
 
-  global_timeout = setTimeout(() => {
-    hovering = false;
-    global_timeout = null;
+  hover_data.cell.timeout = setTimeout(() => {
+    hover_data.cell.hovering = false;
+    hover_data.cell.timeout = null;
   }, 600);
 }
 
@@ -143,7 +142,7 @@ function bump_unhover()
   >
   </div>
 
-  <div class="hex-cell cords" class:hovering>
+  <div class="hex-cell cords" class:hovering={hover_data.cell.hovering}>
     {@html katex.renderToString(cell?.l ?? "?")}
     <span class="separator">/</span>
     {@html katex.renderToString(cell?.r ?? "?")}
