@@ -7,17 +7,18 @@ import { game } from "#scripts/stores";
 import HexGrid from "#parts/hex-grid.svelte";
 import Notes from "#parts/notes.svelte";
 
-import { fade } from "svelte/transition";
 import { slide } from "svelte/transition";
 import { expoOut } from "svelte/easing";
 import { onMount } from "svelte";
+
+
 
 
 onMount(() => {
   setInterval(() => {
     if (!$game.start_time) return;
     $game.time = Date.now() - $game.start_time;
-  }, 500);
+  }, 1000);
 });
 
 </script>
@@ -32,7 +33,9 @@ onMount(() => {
     <div id="game-info">
       <section id="turn-count">
         <h2> TURN </h2>
-        <p> {$game.turn} </p>
+        {#key $game.turn}
+          <p transition:slide={{ duration: 1000, easing: expoOut }}> {$game.turn} </p>
+        {/key}
       </section>
 
       <section id="game-timer">
@@ -47,44 +50,51 @@ onMount(() => {
       <section id="current-cell">
         <h2> CURRENT CELL </h2>
 
-        {#key $game.selected_l + $game.selected_r}
-          <p transition:slide={{ duration: 1000, easing: expoOut }}>
+        <div class="content">
+          {#key $game.selected_l + $game.selected_r}
+            <p transition:slide={{ duration: 1000, easing: expoOut }}>
 
-            {#if $game.selected_l && $game.selected_r}
-              {@html katex.renderToString($game.selected_l, { throwOnError: false })}
-              <span class="separator">/</span>
-              {@html katex.renderToString($game.selected_r, { throwOnError: false })}
-            {:else}
-              -
-            {/if}
+              {#if $game.selected_l && $game.selected_r}
+                {@html katex.renderToString($game.selected_l, { throwOnError: false })}
+                <span class="separator">/</span>
+                {@html katex.renderToString($game.selected_r, { throwOnError: false })}
+              {:else}
+                -
+              {/if}
 
-          </p>
-        {/key}
+            </p>
+          {/key}
+        </div>
       </section>
 
       <section id="cell-history">
         <h2> HISTORY </h2>
 
-        {#each $game.cell_history as [l, r] (l+r)}
-          <p transition:slide={{ duration: 1000, easing: expoOut }}>
-            {@html katex.renderToString(l, { throwOnError: false })}
-            <span class="separator">/</span>
-            {@html katex.renderToString(r, { throwOnError: false })}
-          </p>
-        {/each}
+        <div class="content">
+          {#each $game.cell_history as [l, r] (l+r)}
+            <p transition:slide={{ duration: 1000, easing: expoOut }}>
+              {@html katex.renderToString(l, { throwOnError: false })}
+              <span class="separator">/</span>
+              {@html katex.renderToString(r, { throwOnError: false })}
+            </p>
+          {/each}
+        </div>
       </section>
     </div>
 
     <div class="col right">
       <section id="pick-next">
-        <Notes text="Players waiting to pick the next cell" />
+        <h2> PICKING NEXT CELL </h2>
+        <Notes text="Player names" />
       </section>
 
       <section id="complex-plane">
+        <h2> COMPLEX PLANE </h2>
         <Notes text="Player in the complex plane" multi={false} />
       </section>
 
       <section id="notes">
+        <h2> NOTES </h2>
         <Notes text="Notes" />
       </section>
     </div>
@@ -102,7 +112,6 @@ onMount(() => {
   align-items: center;
   column-gap: 2rem;
 
-  height: 90vh;
   width: 100vw;
 
   & > .left {
@@ -120,7 +129,7 @@ onMount(() => {
     flex-flow: row nowrap;
     justify-content: space-evenly;
     align-items: start;
-    gap: 1rem;
+    gap: 2rem;
   }
 }
 
@@ -150,11 +159,13 @@ onMount(() => {
   flex-direction: column;
   justify-content: start;
   align-items: stretch;
-  gap: 1rem;
-}
+  gap: 2rem;
 
-.col.left {
-  section {
+  h2 {
+    padding-bottom: 0.5em;
+  }
+
+  .content {
     padding: 1em 1.5em;
     background: $col-back;
   }
@@ -162,7 +173,6 @@ onMount(() => {
 
 #current-cell {
   p {
-    padding-top: 0.5em;
     font-size: 200%;
   }
 }
@@ -173,7 +183,7 @@ onMount(() => {
 
   p {
     padding: 0.5em 0.5em;
-    margin: 0.5em -0.5em;
+    margin: 0.25em -0.5em;
     border-radius: 0.4em;
     transition: background 0.1s ease-out;
 
@@ -186,6 +196,14 @@ onMount(() => {
 h2 {
   @include font-body;
   font-size: 120%;
+}
+
+
+@media screen and (max-width: 60rem) {
+  .layout {
+    flex-flow: column nowrap;
+    gap: 4rem;
+  }
 }
 
 </style>

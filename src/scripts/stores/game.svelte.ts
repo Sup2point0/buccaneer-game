@@ -42,6 +42,8 @@ export class Game
     this.selected_l = l;
     this.selected_r = r;
     this.cell_history.unshift([l, r]);
+    
+    this.turn++;
   }
 }
 
