@@ -1,0 +1,59 @@
+name: 'Github Pages Deployment'
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '*.svelte'
+      - '*.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # defaults:
+    #   run:
+    #     working-directory: './'
+        
+    steps:
+      - name: 'git / checkout'
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: 'node / setup'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: './package-lock.json'
+
+      - name: 'node / install'
+        run: npm install
+
+      - name: 'svelte / build'
+        env:
+          BASE_PATH: '/${{ github.event.repository.name }}/site'
+        run: |
+          npm run build
+
+      - name: 'github / upload artifacts'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'site/build/'
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 'github / deploy'
+        id: deployment
+        uses: actions/deploy-pages@v4
