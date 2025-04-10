@@ -2,6 +2,12 @@
 
 import { base } from "$app/paths";
 
+
+const flavour = [
+  "Nice day for fishing, ain’t it?",
+  "Weather ain’t looking too great today.",
+]
+
 </script>
 
 

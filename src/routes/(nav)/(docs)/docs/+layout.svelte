@@ -10,5 +10,9 @@ let { children } = $props();
 <NavPane />
 
 <article>
-  {@render children?.()}
+  {#if children}
+      {@render children()}
+  {:else}
+    <p> Oops, something went wrong! </p>
+  {/if}
 </article>

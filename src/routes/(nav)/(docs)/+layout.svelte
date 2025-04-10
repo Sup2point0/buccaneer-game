@@ -7,7 +7,13 @@ let { children } = $props();
 
 <div class="layout">
   <div class="content">
-    {@render children?.()}
+    {#if children}
+      {@render children()}
+    {:else}
+      <article>
+        <p> Oops, something went wrong! </p>
+      </article>
+    {/if}
   </div>
 </div>
 
