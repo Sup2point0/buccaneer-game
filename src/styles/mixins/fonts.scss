@@ -3,5 +3,9 @@
 }
 
 @mixin font-body {
+  font-family: 'Marcellus', serif;
+}
+
+@mixin font-ui {
   font-family: 'Fondamento', serif;
 }

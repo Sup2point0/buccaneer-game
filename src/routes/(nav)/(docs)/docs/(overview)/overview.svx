@@ -1,0 +1,15 @@
+The Buccaneer Game is a mathematical game of piracy, espionage and pure fun. Friendships and rivalries are put to the test as you climb over each other to reach the highest score possible.
+
+The goal is simple: reach the highest score you can.
+
+Here’s brief summary of how it works:
+
+- Players fill in their grid with Items.
+- Each round, a cell in the grid is called out.
+- Players cross out that cell in their grid, and apply the Item they’ve placed in that cell.
+- Items can increase or decrease a player’s score, affect other players, or pull off all kinds of other wacky effects.
+- When the game ends, whoever has the highest score wins!
+
+Sounds simple – but once the game starts, shenanigans begin and chaos ensues.
+
+The Buccaneer Game is a spin-off of the [Pirate Game<sup>↗</sup>](https://www.tes.com/teaching-resource/the-pirate-game-end-of-term-activity-6258063), a game which my maths teachers played with my class at the end of terms. It’s intended to capture the magic of the original while adding more mathematical flair and variety.

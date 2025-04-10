@@ -11,7 +11,7 @@ import { base } from "$app/paths";
 
 
 <nav>
-  <a href="{base}/rules"> Rules </a>
+  <a href="{base}/docs"> How to Play </a>
   <a href="{base}/run"> Run a Game </a>
   <a href="{base}/play"> Play a Game </a>
   <a href="{base}/changelog"> Changelog </a>
@@ -22,7 +22,10 @@ import { base } from "$app/paths";
 <style lang="scss">
 
 nav {
+  width: 100%;
   padding: 0.25rem 0;
+  position: fixed;
+  top: 0;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -33,7 +36,7 @@ nav {
   a {
     padding: 0.25em 0.5em;
 
-    @include font-body;
+    @include font-ui;
     font-size: 150%;
     color: $col-text-prot;
     text-decoration: none;
