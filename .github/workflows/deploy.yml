@@ -10,15 +10,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: './'
         
     steps:
       - name: 'git / checkout'
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - name: 'node / setup'
         uses: actions/setup-node@v4
@@ -31,15 +26,15 @@ jobs:
         run: npm install
 
       - name: 'svelte / build'
-        env:
-          BASE_PATH: '/${{ github.event.repository.name }}/site'
+        # env:
+        #   BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
           npm run build
 
       - name: 'github / upload artifacts'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'site/build/'
+          path: 'build/'
 
   deploy:
     needs: build
