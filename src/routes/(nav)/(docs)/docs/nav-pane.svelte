@@ -5,17 +5,27 @@ The side navigation for rules pages.
 
 <script lang="ts">
 
+import { page } from "$app/state";
 import { base } from "$app/paths";
 
 </script>
 
 
+{#snippet link(intern: string, text: string)}
+  <a
+    class:live={page.url.pathname === `/docs${intern}`}
+    href="{base}/docs{intern}"
+  >
+    {text}
+  </a>
+{/snippet}
+
 <nav class="block">
-  <a href="{base}/docs"> Overview </a>
-  <a href="{base}/docs/reqs"> Requirements </a>
-  <a href="{base}/docs/setup"> Setup </a>
-  <a href="{base}/docs/rules"> Rules </a>
-  <a href="{base}/docs/items"> Items </a>
+  {@render link("", "Overview")}
+  {@render link("/reqs", "Requirements")}
+  {@render link("/setup", "Setup")}
+  {@render link("/rules", "Rules")}
+  {@render link("/items", "Items")}
 </nav>
 
 
@@ -44,6 +54,10 @@ nav a {
 
   &:active {
     background: rgb(black, 10%);
+  }
+
+  &.live {
+    color: $col-blue;
   }
 }
 
