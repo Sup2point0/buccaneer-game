@@ -56,4 +56,4 @@ For instance, the central cell here is $(2.0 / i)$, while the top cell is $(\pi 
     - For instance, you cannot reject a score swap.
     - You can try persuade someone to pick a different player, but their own decision is final.
 
-For rulings on each specific Items and interactions, see [Items].
+For rulings on each specific Items and interactions, see [Items](items).

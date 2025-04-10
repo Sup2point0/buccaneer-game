@@ -1,1 +1,19 @@
-Created by Sup#2.0
+created by [Sup#2.0](https://github.com/Sup2point0)
+
+inspired by the [Pirate Game](https://www.tes.com/teaching-resource/the-pirate-game-end-of-term-activity-6258063)
+
+
+### Website
+
+built with [Svelte](https://svelte.dev) / [Kit](https://svelte.dev/docs/kit/introduction)
+
+colours chosen with [oklch.com](https://oklch.com)
+
+
+### Fonts
+
+[RocknRoll One](https://fonts.google.com/specimen/RocknRoll+One)  
+[Fondamento](https://fonts.google.com/specimen/Fondamento)  
+[Marcellus](https://fonts.google.com/specimen/Marcellus)  
+
+from [Google Fonts](https://fonts.google.com)

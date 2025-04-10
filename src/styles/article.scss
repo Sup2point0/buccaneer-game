@@ -86,6 +86,7 @@ article {
 
     p.caption {
       margin: 0;
+      @include font-ui;
       color: $col-text-prot;
     }
   }
