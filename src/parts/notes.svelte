@@ -15,7 +15,9 @@ let { text = "", multi = true }: Props = $props();
 </script>
 
 
-<textarea placeholder={text} class:multi
+<textarea class:multi
+  spellcheck="false"
+  placeholder={text}
   onkeydown={e => {
     if (e.key === "Enter" && !multi) {
       e.preventDefault();
