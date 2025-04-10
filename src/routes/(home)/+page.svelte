@@ -13,7 +13,7 @@ import { base } from "$app/paths";
   </header>
 
   <nav class="block">
-    <a href="{base}/rules"> Rules </a>
+    <a href="{base}/docs"> How to Play </a>
     <a href="{base}/run"> Run a Game </a>
     <a href="{base}/play"> Play a Game </a>
     <a href="{base}/changelog"> Changelog </a>
@@ -46,6 +46,7 @@ header {
     padding: 0 0 0.25em;
     @include font-head;
     font-size: 300%;
+    font-weight: normal;
   }
 
   p.caption {

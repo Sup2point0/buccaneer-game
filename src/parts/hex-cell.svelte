@@ -214,8 +214,14 @@ function bump_unhover()
   .highlight-left & {
     background: color-mix(in oklch, $col-blue, transparent 80%);
   }
+  .highlight-left &.used {
+    background: color-mix(in oklch, $col-blue, transparent 20%);
+  }
   .highlight-right & {
     background: color-mix(in oklch, $col-red, transparent 80%);
+  }
+  .highlight-right &.used {
+    background: color-mix(in oklch, $col-red, transparent 10%);
   }
 }
 

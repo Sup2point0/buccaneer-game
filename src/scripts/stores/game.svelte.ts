@@ -56,4 +56,4 @@ export interface GameOptions
 
 // export const game = persisted("bucc.game", undefined);
 // export const game = persisted("bucc.game", new Game({ rings: 3 }));
-export const game = writable(new Game({ rings: 4 }));
+export const game = writable(new Game({ rings: 3 }));

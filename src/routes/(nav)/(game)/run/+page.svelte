@@ -25,7 +25,7 @@ onMount(() => {
 <div class="layout">
   <div class="left">
     <div id="hex-grid">
-      <HexGrid rings={$game.grid.rings} size="4.5rem" />
+      <HexGrid rings={$game.grid.rings} size="10vh" />
     </div>
 
     <div id="game-info">
@@ -119,7 +119,7 @@ onMount(() => {
 
       <section id="notes">
         <h2> NOTES </h2>
-        <Notes text="Nice for fishing, ain’t it" />
+        <Notes text="Nice day for fishing, ain’t it" />
       </section>
     </div>
   </div>
@@ -131,6 +131,7 @@ onMount(() => {
 .layout {
   width: 100vw;
   padding: 1rem 2rem;
+  margin-top: 3rem;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -240,7 +241,7 @@ onMount(() => {
     &:hover .cross {
       display: block;
       position: absolute;
-      top: 0.5em;
+      top: 0.6em;
       right: 0.5em;
     }
   }
@@ -248,7 +249,7 @@ onMount(() => {
 
 
 h2 {
-  @include font-body;
+  @include font-ui;
   font-size: 120%;
   color: $col-text-prot;
 }
