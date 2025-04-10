@@ -1,14 +1,15 @@
-<script>
+<script lang="ts">
 
 import Content from "./overview.svx";
+import { current, update } from "#src/version.json" assert { type: "json" };
 
 </script>
 
 
 <header>
-  <h1> Official Rules </h1>
-  <p class="caption"> version 2.1.0 </p>
-  <p class="caption"> last updated 10 April 2025 </p>
+  <h1> Buccaneer Game </h1>
+  <p class="caption"> version {current} </p>
+  <p class="caption"> last updated {update} </p>
 </header>
 
 <main>
