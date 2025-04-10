@@ -1,34 +1,59 @@
-## Overview
-
-The *Buccaneer Game* is a remix of the Pirate Game.
-
-
-## Playing
-
-### Setup
-
-- Fill in the hexagonal grid with **functions**, **expressions** and **numbers**.
-  - You can choose wherever you want to place them.
-  - Each 
-
-### Play
+> Specific keywords are ***Capitalised*** throughout the game.
 
 
 ## The Grid
 
 Yes, the grid is hexagonal!
 
-- Every cell in the grid is uniquely defined by:
-  - A cell ***constant***, the numerical value along the left.
-  - A cell ***variable***, the letter along the right.
+Each ***cell*** in the grid is *uniquely defined* by a ***Cell Constant*** and ***Cell Variable***.
+
+The Constant is the numerical value along the left.
+
+![diag]
+
+The Variable is the letter along the right.
+
+![diag]
+
+For instance, the central cell here is $(2.0 / i)$, while the top cell is $(\pi / a)$.
+
+![diag]
 
 
+## The Game
 
-### Expressions
+-	Each player starts with a score of $0$.
+-	Each round, a cell is called out by its Constant and Variable.
+-	Mark off that cell on your grid.
+    -	If it has a ***Number***, add that to your score.
+    -	If it has a ***Function***, apply its effect.
+        -	If the effect involves another player, stand up and wait for the host to ask you to apply the effect.
+    -	If it has an ***Action***, you’ve now unlocked that Action.
+        -	Mark the Action as unlocked. You can choose to use at any time.
+    -	If it’s empty, do nothing.
+-	At the end of the game, whoever has the highest total score wins!
 
-- Expressions can be used **once** after being unlocked.
-- Expressions can be used at any time, and do not expire.
-- You can use any number of expressions in 1 round.
+
+## Scoring
+
+-	Scores must always be integers.
+    - After applying an effect that leaves you with a non-integer score, round it to the nearest integer.
+-	Scores must be precise.
+    - Don’t round your score below units precision, because all of the digits do matter.
+    - For instance, a score of $4273$ is $4273$, not $4270$, or $4200$, or $4300$.
+-	Your final score is your ***current score*** + your ***saved score***.
 
 
-Indeed, concisely articulating one’s thoughts and perspectives is a challenge that requires skill, practice and time; what often goes underappreciated is the converse, the unapologetic predisposition to ‘yap’. It is simple and trivial to produce large, impressive words (or phrases) such as ‘isomorphic conjugacy’ or ‘asynchronous resolution’. More difficult, and very much more humorous, is stringing said words together in a seemingly coherent sentence of extraordinary density.
+## Miscellaneous
+
+-	The game is built on honesty.
+    - We trust everyone to track their scores accurately.
+    - If you cheat, then you’re just lying to yourself.
+-	If other players ask you for your score or inquire about any other info, you aren’t obliged to tell them the truth.
+    - This is a pirate game, after all!
+    - However, if you’re swapping scores, being stolen from, etc. you **must** reveal your true score.
+-	Players cannot decline effects applied to them.
+    - For instance, you cannot reject a score swap.
+    - You can try persuade someone to pick a different player, but their own decision is final.
+
+For rulings on each specific Items and interactions, see [Items].

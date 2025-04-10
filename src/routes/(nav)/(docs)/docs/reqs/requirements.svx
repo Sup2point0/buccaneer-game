@@ -24,7 +24,7 @@ If playing on paper, each player will need:
 - A writing implement (pen, pencil, etc.)
 - A calculator (highly recommended)
 
-If players have access to devices, Desmos is an awesome calculator.
+If players have access to devices, [Desmos<sup>↗</sup>](https://desmos.com/calculator) is an awesome calculator.
 
 ### Digital
-Players should go to [Play a Game]. The host goes to [Run a Game].
+Players should go to [Play a Game](../play). The host goes to [Run a Game](../run).
