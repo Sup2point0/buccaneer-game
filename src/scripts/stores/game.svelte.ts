@@ -10,8 +10,8 @@ export class Game
   grid: HexGrid;
 
   turn: number = $state(0);
-  start_time: number | null = 1744194999511;  // FIXME
   time: number = 0;
+  start_time: number | null = null;
 
   selected_l: LCord | null = $state(null);
   selected_r: RCord | null = $state(null);
@@ -34,6 +34,15 @@ export class Game
   create_new(options: GameOptions)
   {
     this.grid = new HexGrid(options.rings);
+    this.grid.cells = this.grid.cells;  // trigger reactivity
+
+    this.turn = 0;
+    this.time = 0;
+    this.start_time = Date.now();
+
+    this.selected_l = null;
+    this.selected_r = null;
+    this.cell_history = [];
   }
 
   select_cell(cords: Cords)

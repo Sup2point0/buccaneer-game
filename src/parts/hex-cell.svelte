@@ -188,7 +188,7 @@ function bump_unhover()
   clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
   background: rgb(black, 4%);
 
-  &:hover, &:focus {
+  &:hover, &:focus-visible {
     background: rgb(black, 8%);
   }
   &:active {
@@ -198,7 +198,7 @@ function bump_unhover()
   &.used {
     background: #65696b;
 
-    &:hover, &:focus {
+    &:hover, &:focus-visible {
       background: color.adjust(#65696b, $lightness: -10%);
     }
   }
@@ -206,7 +206,7 @@ function bump_unhover()
   &.live {
     background: rgb(#f5d503, 25%);
 
-    &:hover, &:focus {
+    &:hover, &:focus-visible {
       background: rgb(#f5d503, 50%);
     }
   }
@@ -276,12 +276,12 @@ function bump_unhover()
   transition: all 0.12s ease-out;
   transition-delay: 0;
 
-  .hex-cell:where(:hover, :focus) ~ & {
+  .hex-cell:where(:hover, :focus-visible) ~ & {
     opacity: 1;
     visibility: visible;
     transition-delay: 0.5s;
   }
-  .hex-cell:where(:hover, :focus) ~ &.hovering {
+  .hex-cell:where(:hover, :focus-visible) ~ &.hovering {
     transition-duration: 0.06s;
     transition-delay: 0s;
   }

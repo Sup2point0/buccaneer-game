@@ -11,11 +11,26 @@ import { base } from "$app/paths";
 
 
 <nav>
-  <a href="{base}/docs"> How to Play </a>
-  <a href="{base}/run"> Run a Game </a>
-  <a href="{base}/play"> Play a Game </a>
-  <a href="{base}/changelog"> Changelog </a>
-  <a href="{base}/credits"> Credits </a>
+  <a href="{base}/docs">
+    <span class="more"> How to Play </span>
+    <span class="less"> Rules </span>
+  </a>
+  <a href="{base}/run">
+    <span class="more"> Run a Game </span>
+    <span class="less"> Run </span>
+  </a>
+  <a href="{base}/play">
+    <span class="more"> Play a Game </span>
+    <span class="less"> Play </span>
+  </a>
+  <a href="{base}/changelog">
+    <span class="more"> Changelog </span>
+    <span class="less"> Changelog </span>
+  </a>
+  <a href="{base}/credits">
+    <span class="more"> Credits </span>
+    <span class="less"> Credits </span>
+  </a>
 </nav>
 
 
@@ -50,6 +65,19 @@ nav {
     &:active {
       background: rgb(black, 10%);
     }
+
+    .less {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 60rem) {
+  nav a .more {
+    display: none;
+  }
+  nav a .less {
+    display: inline;
   }
 }
 

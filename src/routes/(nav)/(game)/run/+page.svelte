@@ -4,13 +4,17 @@ import katex from "katex";
 
 import { game } from "#scripts/stores";
 
+import NewGame from "../new-game.svelte";
 import HexGrid from "#parts/hex-grid.svelte";
 import Notes from "#parts/notes.svelte";
+import Clicky from "#parts/clicky.svelte";
 
 import { slide } from "svelte/transition";
 import { expoOut } from "svelte/easing";
 import { onMount } from "svelte";
 
+
+let creating = $state(false);
 
 onMount(() => {
   setInterval(() => {
@@ -21,6 +25,10 @@ onMount(() => {
 
 </script>
 
+
+{#if creating}
+  <NewGame bind:open={creating} />
+{/if}
 
 <div class="layout">
   <div class="left">
@@ -51,6 +59,11 @@ onMount(() => {
           <!-- FIXME count cells properly -->
         </p>
       </section>
+    </div>
+
+    <div id="game-controls">
+      <Clicky text="NEW GAME" action={() => { creating = true; }} />
+      <Clicky text="NEW GAME" action={() => { creating = true; }} />
     </div>
   </div>
 
@@ -182,6 +195,16 @@ onMount(() => {
   }
 }
 
+#game-controls {
+  width: 100%;
+  padding-top: 2rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
 
 .col {
   flex-grow: 1;
@@ -263,6 +286,7 @@ h2 {
 @media screen and (max-width: 60rem) {
   .layout {
     flex-flow: column nowrap;
+    align-items: center;
     gap: 4rem;
   }
 }
