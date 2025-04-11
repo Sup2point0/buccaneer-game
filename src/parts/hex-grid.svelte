@@ -51,6 +51,8 @@ onMount(() => {
 
 
 <div class="hex-layout">
+  {#key $game.shard}
+
   <div class="hex-grid" style:--size={size}>
     <!-- centre cell -->
     <HexCell />
@@ -86,6 +88,7 @@ onMount(() => {
     {/each}
   </div>
 
+  {/key}
 </div>
 
 

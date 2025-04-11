@@ -112,7 +112,7 @@ function bump_unhover()
 </script>
 
 
-<div class="hex-cell-root"
+<div class="hex-cell-root layer-{layer} group-{group} index-{index}"
   class:highlight-left={
     hover_data.axis.side === "left"
     && (hover_data.axis.cord === cell?.l || hover_data.axis.cord === cell?.r)
@@ -156,6 +156,17 @@ function bump_unhover()
     {@html katex.renderToString(cell?.r ?? "?")}
   </div>
 </div>
+
+<!-- <div class="hex-cell" style="
+  --layer: {layer};
+  --group: {group};
+  --index: {index};
+  left: 1.25rem;
+  top: 1.5rem;
+  font-size: 150%;"
+>
+  {layer}-{group}-{index}
+</div> -->
 
 
 <style lang="scss">
@@ -223,6 +234,8 @@ function bump_unhover()
   .highlight-right &.used {
     background: color-mix(in oklch, $col-red, transparent 10%);
   }
+
+  animation: fade-in-back 1s ease-out;
 }
 
 .hex-cell.front {
@@ -254,6 +267,8 @@ function bump_unhover()
   .highlight-right & {
     background: $col-red;
   }
+
+  animation: fade-in-front 1s ease-out;
 }
 
 .hex-cell.cords {
@@ -293,6 +308,86 @@ function bump_unhover()
 
 button {
   appearance: none;
+}
+
+
+$col-highlight: #f5d503;
+
+@keyframes fade-in-back {
+  0%   { background: rgb(black, 4%); }
+  25%  { background: $col-blue; }
+  30%  { background: $col-blue; }
+  40%  { background: $col-red; }
+  60%  { background: $col-red; }
+  75%  { background: $col-highlight; }
+  100% { background: rgb(black, 4%); }
+}
+
+@keyframes fade-in-front {
+  0%   { background: #cfd3d5; }
+  25%  { background: $col-blue; }
+  30%  { background: $col-blue; }
+  40%  { background: $col-red; }
+  60%  { background: $col-red; }
+  75%  { background: $col-highlight; }
+  100% { background: #cfd3d5; }
+}
+
+$delay-base: 0.5s;
+$delay-unit: 0.05s;
+
+/* Yes, this is horrific. Alas, this was the only way. */
+.layer-3.group-4.index-0 {
+  .hex-cell { animation-delay: $delay-base + 1*$delay-unit; }
+}
+.layer-3.group-3.index-2,
+.layer-2.group-4.index-0,
+.layer-3.group-4.index-1 {
+  .hex-cell { animation-delay: $delay-base + 2*$delay-unit; }
+}
+.layer-3.group-3.index-1,
+.layer-2.group-3.index-1,
+.layer-1.group-4.index-0,
+.layer-2.group-4.index-1,
+.layer-3.group-4.index-2 {
+  .hex-cell { animation-delay: $delay-base + 3*$delay-unit; }
+}
+.layer-3.group-3.index-0,
+.layer-2.group-3.index-0,
+.layer-1.group-3.index-0,
+.layer-0.group-0.index-0,
+.layer-1.group-5.index-0,
+.layer-2.group-5.index-0,
+.layer-3.group-5.index-0 {
+  .hex-cell { animation-delay: $delay-base + 4*$delay-unit; }
+}
+.layer-3.group-2.index-2,
+.layer-2.group-2.index-1,
+.layer-1.group-2.index-0,
+.layer-1.group-1.index-0,
+.layer-1.group-0.index-0,
+.layer-2.group-5.index-1,
+.layer-3.group-5.index-1 {
+  .hex-cell { animation-delay: $delay-base + 5*$delay-unit; }
+}
+.layer-3.group-2.index-1,
+.layer-2.group-2.index-0,
+.layer-2.group-1.index-1,
+.layer-2.group-1.index-0,
+.layer-2.group-0.index-1,
+.layer-2.group-0.index-0,
+.layer-3.group-5.index-2 {
+  .hex-cell { animation-delay: $delay-base + 6*$delay-unit; }
+}
+
+.layer-3.group-2.index-0,
+.layer-3.group-1.index-2,
+.layer-3.group-1.index-1,
+.layer-3.group-1.index-0,
+.layer-3.group-0.index-2,
+.layer-3.group-0.index-1,
+.layer-3.group-0.index-0 {
+  .hex-cell { animation-delay: $delay-base + 7*$delay-unit; }
 }
 
 </style>

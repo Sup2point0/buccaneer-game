@@ -6,6 +6,8 @@ import type { LCord, RCord, Cords } from "#scripts/types";
 
 export class Game
 {
+  shard: number = $state(0);
+
   /* @ts-ignore */
   grid: HexGrid;
 
@@ -33,6 +35,8 @@ export class Game
 
   create_new(options: GameOptions)
   {
+    this.shard++;
+    
     this.grid = new HexGrid(options.rings);
     this.grid.cells = this.grid.cells;  // trigger reactivity
 
