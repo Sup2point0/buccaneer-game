@@ -135,12 +135,12 @@ onMount(() => {
 
 .layout {
   width: 100vw;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
   margin-top: 3rem;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   column-gap: 2rem;
 
   & > .left {

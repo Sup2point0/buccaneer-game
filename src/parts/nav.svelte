@@ -26,6 +26,7 @@ nav {
   padding: 0.25rem 0;
   position: fixed;
   top: 0;
+  z-index: 10;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
