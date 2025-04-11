@@ -63,7 +63,7 @@ onMount(() => {
 
     <div id="game-controls">
       <Clicky text="NEW GAME" action={() => { creating = true; }} />
-      <Clicky text="NEW GAME" action={() => { creating = true; }} />
+      <Clicky text="RESTART" action={() => { $game.create_new(); }} />
     </div>
   </div>
 

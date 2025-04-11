@@ -13,11 +13,13 @@ export class Game
 
   turn: number = $state(0);
   time: number = 0;
-  start_time: number | null = null;
+  start_time?: number;
 
   selected_l: LCord | null = $state(null);
   selected_r: RCord | null = $state(null);
   cell_history: Cords[] = $state([]);
+
+  _options?: GameOptions;
 
   constructor(options: GameOptions)
   {
@@ -33,11 +35,17 @@ export class Game
     return `${hours}:${minutes.toString().padStart(2, "0")}.${seconds.toString().padStart(2, "0")}`;
   }
 
-  create_new(options: GameOptions)
+  create_new(options?: GameOptions)
   {
+    if (options) {
+      this._options = options;
+    } else {
+      options = this._options;
+    }
+
     this.shard++;
-    
-    this.grid = new HexGrid(options.rings);
+
+    this.grid = new HexGrid(options!.rings);
     this.grid.cells = this.grid.cells;  // trigger reactivity
 
     this.turn = 0;

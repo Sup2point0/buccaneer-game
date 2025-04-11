@@ -45,7 +45,9 @@ function go()
   out:slide={{ duration: 600, easing: expoIn }}
 >
   <div class="window">
-    <section></section>
+    <section>
+      <h1> New Game </h1>
+    </section>
     <section id="final-utils">
       <Clicky text="CANCEL" kind="deut" action={exit} />
       <Clicky text="GO" action={go} />
@@ -74,7 +76,7 @@ aside {
   width: min(80%, 60rem);
   height: 80%;
   overflow-y: auto;
-  padding: 2rem;
+  padding: 2rem 4rem;
   margin-bottom: 3rem;
   display: flex;
   flex-flow: column nowrap;
@@ -84,6 +86,11 @@ aside {
 
 section {
   // width: 100%;
+}
+
+h1 {
+  @include font-ui;
+  font-size: 4rem;
 }
 
 #final-utils {

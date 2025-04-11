@@ -4,6 +4,8 @@ A block that can be typed into
 -->
 
 <script lang="ts">
+  
+import { game } from "#src/scripts/stores";
 
 interface Props {
   text?: string;
@@ -12,19 +14,21 @@ interface Props {
 
 let { text = "", multi = true }: Props = $props();
 
+
 </script>
 
 
-<textarea class:multi
-  spellcheck="false"
-  placeholder={text}
-  onkeydown={e => {
-    if (e.key === "Enter" && !multi) {
-      e.preventDefault();
-    }
-  }}
->
-</textarea>
+{#key $game.shard}
+  <textarea class:multi
+    spellcheck="false"
+    placeholder={text}
+    onkeydown={e => {
+      if (e.key === "Enter" && !multi) {
+        e.preventDefault();
+      }
+    }}
+  ></textarea>
+{/key}
 
 
 <style lang="scss">
