@@ -43,6 +43,10 @@ button {
     box-shadow: 0 1px 4px rgb(black, 25%);
     transform: scale(105%);
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 button.prot {
@@ -52,9 +56,9 @@ button.prot {
     background: $col-red;
   }
 
-&:active {
-  background: color.adjust($col-red, $lightness: -10%);
-}
+  &:active {
+    background: color.adjust($col-red, $lightness: -10%);
+  }
 }
 
 button.deut {

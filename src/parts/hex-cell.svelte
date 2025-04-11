@@ -84,11 +84,13 @@ function bump_hover()
 
   if (hover_data.hoverlock) {
     hover_data.hovering = true;
+    hover_data.axis.cord = null;
     return;
   }
 
   timeout = setTimeout(() => {
     hover_data.hovering = true;
+    hover_data.axis.cord = null;
   }, 500);
 }
 

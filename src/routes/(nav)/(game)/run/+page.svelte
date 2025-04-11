@@ -255,8 +255,11 @@ onMount(() => {
     outline: none;
     transition: background 0.1s ease-out;
 
-    &:hover {
+    &:hover, &:focus-visible {
       background: $col-back;
+    }
+    &:hover {
+      cursor: pointer;
     }
     &:active {
       background: $col-back-click;
