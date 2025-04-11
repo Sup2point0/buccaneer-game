@@ -3,31 +3,33 @@
 
 ## The Grid
 
-Yes, the grid is hexagonal!
+Yes, the game ***grid*** is hexagonal!
+
+<img alt="The hexagonal game grid" src="../grid-preview.png" width="360px">
 
 Each ***cell*** in the grid is *uniquely defined* by a ***Cell Constant*** and ***Cell Variable***.
 
 The Constant is the numerical value along the left.
 
-![diag]
+<img alt="The Constant along the left" src="../grid-constant.png" width="360px">
 
 The Variable is the letter along the right.
 
-![diag]
+<img alt="The Variable along the right" src="../grid-variable.png" width="360px">
 
 For instance, the central cell here is $(2.0 / i)$, while the top cell is $(\pi / a)$.
 
-![diag]
+<img alt="Co-ordinates of cells in the grid" src="../grid-cell.png" width="360px">
 
 
 ## The Game
 
 -	Each player starts with a score of $0$.
 -	Each round, a cell is called out by its Constant and Variable.
--	Mark off that cell on your grid.
+-	Mark off that cell on your grid, then apply the effect of the ***Item*** it contains.
     -	If it has a ***Number***, add that to your score.
     -	If it has a ***Function***, apply its effect.
-        -	If the effect involves another player, stand up and wait for the host to ask you to apply the effect.
+        -	If the effect involves another player, stand up and wait for the Captain to ask you to apply the effect.
     -	If it has an ***Action***, you’ve now unlocked that Action.
         -	Mark the Action as unlocked. You can choose to use at any time.
     -	If it’s empty, do nothing.

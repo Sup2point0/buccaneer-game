@@ -1,7 +1,7 @@
 Each player has their own hexagonal grid.
 
-Before the game begins, you should fill in your grid with [Items](items). You can choose wherever you’d like to place them. Most Items can only be used once, while some can be used multiple times. You must use every Item as many times as it can be used.
+Before the game begins, you should fill in your grid with [**Items**](items). You can choose wherever you’d like to place them. Most Items can only be used once, while some can be used multiple times. You must use every Item as many times as it can be used.
 
-There are 3 types of Items – Numbers, Functions, Actions. Numbers are added to your score when obtained, while Functions and Actions apply unique effects. You may want to think about where you place which Items!
+There are 3 types of Items – ***Numbers***, ***Functions***, ***Actions***. Numbers are added to your score when obtained, while Functions and Actions apply unique effects. You may want to think about where you place which Items!
 
 Depending on the size of grid and which Items you are using, some cells may end up being empty.

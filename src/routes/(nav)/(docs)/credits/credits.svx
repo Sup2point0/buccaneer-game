@@ -7,7 +7,7 @@ inspired by the [Pirate Game](https://www.tes.com/teaching-resource/the-pirate-g
 
 built with [Svelte](https://svelte.dev) / [Kit](https://svelte.dev/docs/kit/introduction)
 
-colours chosen with [oklch.com](https://oklch.com)
+colours synthesised with [oklch.com](https://oklch.com)
 
 
 ### Fonts

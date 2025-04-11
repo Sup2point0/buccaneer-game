@@ -22,3 +22,8 @@ html, body {
 ::selection {
   background: color.adjust($col-prot, $alpha: -0.2) !important;
 }
+
+
+img {
+  max-width: 100%;
+}

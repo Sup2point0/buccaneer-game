@@ -1,30 +1,44 @@
-## General
+## Crew
 
-The Buccaneer is a multiplayer game. The more, the merrier!
+The Buccaneer is a multiplayer game. You will need:
 
-Generally, you’ll want a class of students – i.e. 8 players at the very least, ideally 10–20. It can get a bit unmanageable with more than 30.
+- One ***Captain***
+- Many ***players***
+- A screen everyone can see
 
-1 person hosts the game and does not play.
+The Captain hosts the game and does not play. The more players, the merrier!
+
+Generally, you’ll want a class of students – i.e. **8 players** at the very least, ideally 10–20. It can get a bit unmanageable with more than 30.
 
 
 ## Paper vs Digital
 
-You can play the Buccaneer Game digitally (on this website) or on paper (by printing the game as sheets).
+You can play the Buccaneer Game [digitally](../play) (on this website) or on paper (by printing the game as sheets).
 
-Playing on this website provides all the advantages you’d expect – calculations can be automated, players can move Items around easily during setup, and undo mistakes during the game, etc. Note that this website does not actually host games online, it purely provides a visual interface for playing the game (sort of as a replacement for paper).
+Playing on this website provides all the advantages you’d expect:
 
-However, the game is also more fun on paper! It tends to lose a lot of its magic when it just turns into clicks and watching numbers change. It is worse for the environment, but a couple sheets for a rare bit of fun is fine.
+- Calculations can be automated
+- Players can easily move Items around during setup
+- Players can easily correct mistakes during the game
 
-As the host, you will definitely find it helpful to manage the game digitally and project it onto a whiteboard. The digital interface helps a lot with explaining or clarifying rules, and allows you and all the players to easily keep track of the game state.
+(Note that this website does not actually host games online, it purely provides a visual interface for playing the game – essentially, as a replacement for paper.)
+
+However, the game is also more fun on paper!
+
+It tends to lose a lot of its magic when it just turns into clicks and watching numbers change. It is worse for the environment, but a couple sheets for a rare bit of fun is fine.
+
+As Captain, you will definitely find it helpful to [manage the game digitally](../run) and project it onto the screen. The digital interface helps a lot with explaining or clarifying rules, and allows you and all the players to easily keep track of the game state.
 
 ### Paper
 If playing on paper, each player will need:
 
-- A game sheet
-- A writing implement (pen, pencil, etc.)
-- A calculator (highly recommended)
+- A **game sheet**
+- A **writing implement** (pen, pencil, etc.)
+- A **calculator** (highly recommended)
 
-If players have access to devices, [Desmos<sup>↗</sup>](https://desmos.com/calculator) is an awesome calculator.
+If players have access to electronic devices, [Desmos<sup>↗</sup>](https://desmos.com/calculator) is an awesome calculator.
+
+If the Captain is managing on paper too, they’ll need to film their own copy with a camera and project it onto the screen.
 
 ### Digital
-Players should go to [Play a Game](../play). The host goes to [Run a Game](../run).
+Players should go to [Play a Game](../play) on their devices. The Captain goes to [Run a Game](../run) and projects it onto the screen.
