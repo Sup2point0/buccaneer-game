@@ -265,9 +265,9 @@ function bump_unhover()
   aspect-ratio: auto;
   padding: 0.25em 0.5em;
   top: 4.5rem;
-  left: 1rem;
   z-index: 3;
 
+  font-size: 120%;
   color: white;
   text-align: center;
   background: rgb(black, 90%);

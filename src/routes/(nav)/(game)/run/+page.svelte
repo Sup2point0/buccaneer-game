@@ -117,6 +117,11 @@ onMount(() => {
         <Notes text="Rick Astley" multi={false} />
       </section>
 
+      <section id="div-zero">
+        <h2> DIVIDED BY ZERO </h2>
+        <Notes text="Grant Sanderson" multi={false} />
+      </section>
+
       <section id="notes">
         <h2> NOTES </h2>
         <Notes text="Nice day for fishing, ain’t it" />
