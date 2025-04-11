@@ -47,7 +47,7 @@ export class HexGrid
   use_cell(cords: Cords): boolean
   {
     let cell = this.get_cell(cords);
-    if (!cell) return false;
+    if (!cell || cell.used) return false;
 
     cell.used = true;
     this.used++;

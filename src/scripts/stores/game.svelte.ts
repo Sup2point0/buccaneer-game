@@ -59,7 +59,8 @@ export class Game
 
   select_cell(cords: Cords)
   {
-    this.grid.use_cell(cords);
+    let updated = this.grid.use_cell(cords);
+    if (!updated) return;
 
     let [l, r] = cords;
     this.selected_l = l;
