@@ -55,8 +55,7 @@ onMount(() => {
         <p>
           {$game.grid.used}
           <span class="separator">/</span>
-          {$game.grid.cells.size}
-          <!-- FIXME count cells properly -->
+          {6 * $game.grid.rings * ($game.grid.rings +1) / 2 +1}
         </p>
       </section>
     </div>
