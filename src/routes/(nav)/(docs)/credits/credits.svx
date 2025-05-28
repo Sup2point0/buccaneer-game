@@ -5,9 +5,11 @@ inspired by the [Pirate Game](https://www.tes.com/teaching-resource/the-pirate-g
 
 ### Website
 
-built with [Svelte](https://svelte.dev) / [Kit](https://svelte.dev/docs/kit/introduction)
+built with [Svelte 5](https://svelte.dev) / [SvelteKit](https://svelte.dev/docs/kit/introduction)
 
 colours synthesised with [oklch.com](https://oklch.com)
+
+source code on [Github](https://github.com/Sup2point0/buccaneer-game)
 
 
 ### Fonts
