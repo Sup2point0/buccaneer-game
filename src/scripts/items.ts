@@ -192,8 +192,8 @@ export const Items = {
   }),
 
   // Actions
-  inv: new Item(ItemType.Action, "Inverse Function", {
-    desc: "Cancel out another player’s Function or Action applied to you.",
+  inv: new Item(ItemType.Action, "inverse function", {
+    desc: "Cancel out another player’s Function or Action applied to you",
     rules: [
       "Activate this is response to a Function or Action.",
       "The Function or Action must either affect you, or have been activated in response to your Function or Action.",
