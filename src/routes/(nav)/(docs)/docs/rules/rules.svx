@@ -25,37 +25,37 @@ For instance, the central cell here is $(2.0 / i)$, while the top cell is $(\pi 
 ## The Game
 
 -	Each player starts with a score of $0$.
--	Each round, a cell is called out by its Constant and Variable.
--	Mark off that cell on your grid, then apply the effect of the ***Item*** it contains.
-    -	If it has a ***Number***, add that to your score.
-    -	If it has a ***Function***, apply its effect.
-        -	If the effect involves another player, stand up and wait for the Captain to ask you to apply the effect.
-    -	If it has an ***Action***, you’ve now unlocked that Action.
-        -	Mark the Action as unlocked. You can choose to use at any time.
-    -	If it’s empty, do nothing.
+-	Each round, the Captain randomly calls a cell out by its Constant and Variable.
+-	As a player, marks off that cell on your grid, then apply the effect of the ***Item*** it contains.
+  -	If it’s a ***Number***, add that to your score.
+  -	If it’s a ***Function***, apply its effect.
+    -	If the effect involves another player, stand up and wait for the Captain to ask you to apply the effect.
+  -	If it’s an ***Action***, you’ve now unlocked that Action.
+    -	Mark the Action as unlocked. You can choose to use at any time.
+  -	If it’s empty, do nothing.
 -	At the end of the game, whoever has the highest total score wins!
 
 
 ## Scoring
 
 -	Scores must always be integers.
-    - After applying an effect that leaves you with a non-integer score, round it to the nearest integer.
+  - After applying an effect that leaves you with a non-integer score, round it to the nearest integer.
 -	Scores must be precise.
-    - Don’t round your score below units precision, because all of the digits do matter.
-    - For instance, a score of $4273$ is $4273$, not $4270$, or $4200$, or $4300$.
+  - Don’t round your score below units precision, because all of the digits do matter.
+  - For instance, a score of $4273$ is $4273$, not $4270$, or $4200$, or $4300$.
 -	Your final score is your ***current score*** + your ***saved score***.
 
 
 ## Miscellaneous
 
 -	The game is built on honesty.
-    - We trust everyone to track their scores accurately.
-    - If you cheat, then you’re just lying to yourself.
+  - We trust everyone to track their scores accurately.
+  - If you cheat, then you’re just lying to yourself.
 -	If other players ask you for your score or inquire about any other info, you aren’t obliged to tell them the truth.
-    - This is a pirate game, after all!
-    - However, if you’re swapping scores, being stolen from, etc. you **must** reveal your true score.
+  - This is a pirate game, after all!
+  - However, if you’re swapping scores, being stolen from, etc. you **must** reveal your true score.
 -	Players cannot decline effects applied to them.
-    - For instance, you cannot reject a score swap.
-    - You can try persuade someone to pick a different player, but their own decision is final.
+  - For instance, you cannot reject a score swap.
+  - You can try persuade someone to pick a different player, but their own decision is final.
 
 For rulings on each specific Items and interactions, see [Items](items).

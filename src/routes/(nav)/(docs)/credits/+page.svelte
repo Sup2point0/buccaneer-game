@@ -1,6 +1,6 @@
 <script lang="ts">
 
-import { current } from "#src/version.json" assert { type: "json" };
+import { current } from "#src/version.json";
 
 import Content from "./credits.svx";
 

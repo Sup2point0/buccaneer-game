@@ -2,7 +2,7 @@
 
 The Buccaneer is a multiplayer game. You will need:
 
-- One ***Captain***
+- One ***Captain*** (host)
 - Many ***players***
 - A screen everyone can see
 
