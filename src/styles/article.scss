@@ -91,6 +91,12 @@ article {
     }
   }
 
+  blockquote {
+    padding-left: 1em;
+    color: $col-text-prot;
+    border-left: 2px solid $col-text-prot;
+  }
+
   ul {
     list-style: "»";
 

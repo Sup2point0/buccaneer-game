@@ -14,10 +14,6 @@ import Content from "./items.svx";
 <main>
   <Content />
 
-  <blockquote>
-    This is a work in progress. A menu for browsing all items will be added soon!
-  </blockquote>
-
   {#each Object.values(Items) as item}
     <div class="item">
       <h2>{item.name}</h2>

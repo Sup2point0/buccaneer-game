@@ -1,4 +1,4 @@
-> Specific keywords are ***Capitalised*** throughout the game.
+> Specific keywords are ***highlighted***; game-specific ones are ***Capitalised*** too.
 
 
 ## The Grid

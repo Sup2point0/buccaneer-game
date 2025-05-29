@@ -5,3 +5,5 @@ Numbers are added to your score when obtained.
 Functions immediately activate an effect when obtained. If this involves another player, you should stand up and wait for the host to ask you to apply your effect.
 
 Actions are unlocked once obtained. You can choose to activate them at any moment in the game – usually, this is in response to another player activating a Function or Action. Actions can only be used once per unlock.
+
+> This is a work in progress. A menu for browsing all items will be added soon!

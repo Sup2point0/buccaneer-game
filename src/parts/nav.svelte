@@ -47,7 +47,7 @@ nav {
   justify-content: center;
   align-items: center;
   column-gap: 0.5rem;
-  background: oklch(0.85 0.037 60.88);
+  background: $col-prot;
 
   a {
     padding: 0.25em 0.5em;
