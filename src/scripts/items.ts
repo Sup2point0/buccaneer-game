@@ -3,14 +3,37 @@ import { ItemType } from "#scripts/types";
 
 
 export const Items = {
-  // Integers
-  add999: new Item(ItemType.Integer, "999"),
-  add1999: new Item(ItemType.Integer, "1999"),
-  add2999: new Item(ItemType.Integer, "2999"),
-  add3999: new Item(ItemType.Integer, "3999"),
-  add6999: new Item(ItemType.Integer, "6999"),
-  add9999: new Item(ItemType.Integer, "9999"),
+  // Numbers
+  add999: new Item(ItemType.Number, "999", {
+    desc: "Add 999 to your score",
+    count: { base: 1, max: 1}
+  }),
 
+  add1999: new Item(ItemType.Number, "1999", {
+    desc: "Add 1999 to your score",
+    count: { base: 1, max: 1}
+  }),
+
+  add2999: new Item(ItemType.Number, "2999", {
+    desc: "Add 2999 to your score",
+    count: { base: 1, max: 1}
+  }),
+
+  add3999: new Item(ItemType.Number, "3999", {
+    desc: "Add 3999 to your score",
+    count: { base: 1, max: 1}
+  }),
+
+  add6999: new Item(ItemType.Number, "6999", {
+    desc: "Add 6999 to your score",
+    count: { base: 1, max: 1}
+  }),
+
+  add9999: new Item(ItemType.Number, "9999", {
+    desc: "Add 9999 to your score",
+    count: { base: 1, max: 1}
+  }),
+  
   // Functions
   sum: new Item(ItemType.Function, "summation", {
     desc: "Gain points equal to your current score’s digit sum \times 101",

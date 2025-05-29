@@ -47,7 +47,7 @@ interface ItemCount {
 
 export enum ItemType
 {
-  Integer = "Integer",
+  Number = "Number",
   Function = "Function",
   Action = "Action",
   Other = "Other",
